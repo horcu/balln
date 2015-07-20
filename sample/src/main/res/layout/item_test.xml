@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="game" type="com.horcu.apps.balln.models.Game"/>
+        <variable name="offense" type="com.horcu.apps.balln.models.Offense"/>
+        <variable name="defense" type="com.horcu.apps.balln.models.Defense"/>
+        <variable name="specialTeams" type="com.horcu.apps.balln.models.SpecialTeams"/>
+        <variable name="position" type="com.horcu.apps.balln.models.Position"/>
+        <variable name="player" type="com.horcu.apps.balln.models.Player"/>
+
+    </data>
+
+<RelativeLayout
+    android:id="@+id/players_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ViewAnimator
+        android:id="@+id/mathups_animator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_gravity="top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            card_view:cardElevation="2dp"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="3dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/players_top_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/refresh"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:alpha=".2"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_sync_black_36dp"/>
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"/>
+
+
+                    <ImageView
+                        android:id="@+id/edit_matchup"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:alpha=".2"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_edit_black_36dp"/>
+
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/spacer_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/players_top_bar"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#89dddddd"/>
+
+                <LinearLayout
+                    android:layout_below="@+id/spacer_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/players_away"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dip"
+
+                            android:textAlignment="textStart"
+                            android:textColor="#999999"
+                            android:text="Quarterback"/>
+
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textStart"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Running back"/>-->
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dip"
+                            android:background="#ffffff"
+                            android:textAlignment="textStart"
+                            android:textColor="#999999"
+                            android:text="Wide reciever"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textStart"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:layout_marginBottom="10dip"-->
+                            <!--android:text="Tight end"/>-->
+
+                        <View android:layout_height="1dp"
+                            android:background="#dddddd"
+                            android:layout_width="wrap_content"/>
+
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+
+                            <!--android:textAlignment="textStart"-->
+
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Line backer"/>-->
+
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textStart"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Corner back"/>-->
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dip"
+                            android:background="#ffffff"
+                            android:textAlignment="textStart"
+                            android:textColor="#999999"
+                            android:text="Strong safety"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dip"
+                            android:background="#ffffff"
+                            android:textAlignment="textStart"
+                            android:textColor="#999999"
+                            android:layout_marginBottom="10dip"
+                            android:text="Rush Line backer"/>
+
+                        <View android:layout_height="1dp"
+                            android:background="#dddddd"
+                            android:layout_width="wrap_content"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dip"
+                            android:background="#ffffff"
+                            android:textAlignment="textStart"
+                            android:textColor="#999999"
+                            android:text="Kick returner"/>
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textStart"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Punt returner"/>-->
+
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textStart"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Punter"/>-->
+
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textStart"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Place kicker"/>-->
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        android:background="#20dddddd">
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="12sp"
+                            android:layout_height="wrap_content"
+                            android:text="QB"/>
+
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="RB"/>-->
+
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="12sp"
+                            android:layout_height="wrap_content"
+                            android:text="WR"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            />
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="TE"/>-->
+
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="25dp"-->
+                            <!--/>-->
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="12sp"
+                            android:layout_height="wrap_content"
+                            android:text="SS"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="12sp"
+                            android:layout_height="wrap_content"
+                            android:text="CB"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="12sp"
+                            android:layout_height="wrap_content"
+                            android:text="SS"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            />
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="RLB"/>-->
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="15dp"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="KR"/>-->
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="PR"/>-->
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="P"/>-->
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="PK"/>-->
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/players_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+
+                        android:paddingTop="5dip"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dip"
+                            android:textAlignment="textEnd"
+                            android:layout_gravity="end"
+                            android:textColor="#999999"
+                            android:text="Quarterback"/>
+
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textEnd"-->
+                            <!--android:layout_gravity="end"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Running back"/>-->
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dip"
+                            android:background="#ffffff"
+                            android:textAlignment="textEnd"
+                            android:layout_gravity="end"
+                            android:textColor="#999999"
+                            android:text="Wide reciever"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textEnd"-->
+                            <!--android:layout_gravity="end"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:layout_marginBottom="10dip"-->
+                            <!--android:text="Tight end"/>-->
+
+                        <View android:layout_height="1dp"
+                            android:background="#dddddd"
+                            android:layout_width="wrap_content"/>
+
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+
+                            <!--android:textAlignment="textEnd"-->
+                            <!--android:layout_gravity="end"-->
+
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Line backer"/>-->
+
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textEnd"-->
+                            <!--android:layout_gravity="end"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Corner back"/>-->
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dip"
+                            android:background="#ffffff"
+                            android:textAlignment="textEnd"
+                            android:layout_gravity="end"
+                            android:textColor="#999999"
+                            android:text="Strong safety"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dip"
+                            android:background="#ffffff"
+                            android:textAlignment="textEnd"
+                            android:layout_gravity="end"
+                            android:textColor="#999999"
+                            android:layout_marginBottom="10dip"
+                            android:text="Rush Line backer"/>
+
+                        <View android:layout_height="1dp"
+                            android:background="#dddddd"
+                            android:layout_width="wrap_content"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dip"
+                            android:background="#ffffff"
+                            android:textAlignment="textEnd"
+                            android:layout_gravity="end"
+                            android:textColor="#999999"
+                            android:text="Kick returner"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textEnd"-->
+                            <!--android:layout_gravity="end"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Punt returner"/>-->
+
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textEnd"-->
+                            <!--android:layout_gravity="end"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Punter"/>-->
+
+                        <!--<Space-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="@dimen/position_spacing"-->
+                            <!--/>-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textSize="14dip"-->
+                            <!--android:background="#ffffff"-->
+                            <!--android:textAlignment="textEnd"-->
+                            <!--android:layout_gravity="end"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:text="Place kicker"/>-->
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_edit"
+            android:layout_gravity="top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            card_view:cardElevation="2dp"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="3dp">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Testing"/>
+
+        </android.support.v7.widget.CardView>
+
+    </ViewAnimator>
+
+</RelativeLayout>
+</layout>
