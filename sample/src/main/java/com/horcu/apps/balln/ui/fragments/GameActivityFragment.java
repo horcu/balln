@@ -9,11 +9,15 @@ import android.view.ViewGroup;
 
 import com.horcu.apps.balln.R;
 import com.horcu.apps.balln.models.Game;
+import com.horcu.apps.balln.models.Player;
+import com.marvinlabs.widget.floatinglabel.itemchooser.FloatingLabelItemChooser;
+
+import java.util.ArrayList;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class GameActivityFragment extends Fragment {
+public class GameActivityFragment extends Fragment implements FloatingLabelItemChooser.OnItemChooserEventListener<Player>{
 
     public GameActivityFragment() {
     }
@@ -25,7 +29,11 @@ public class GameActivityFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         Game game = intent.getParcelableExtra("game");
 
-
         return inflater.inflate(R.layout.fragment_game, container, false);
+    }
+
+    @Override
+    public void onSelectionChanged(FloatingLabelItemChooser<Player> floatingLabelItemChooser, Player player) {
+
     }
 }
