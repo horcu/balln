@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <variable name="game" type="com.horcu.apps.balln.models.Game"/>
-        <variable name="offense" type="com.horcu.apps.balln.models.Offense"/>
-        <variable name="defense" type="com.horcu.apps.balln.models.Defense"/>
-        <variable name="specialTeams" type="com.horcu.apps.balln.models.SpecialTeams"/>
-        <variable name="position" type="com.horcu.apps.balln.models.Position"/>
-        <variable name="player" type="com.horcu.apps.balln.models.Player"/>
+        <variable name="game" type="com.horcu.apps.maura.models.Game"/>
+        <variable name="offense" type="com.horcu.apps.maura.models.Offense"/>
+        <variable name="defense" type="com.horcu.apps.maura.models.Defense"/>
+        <variable name="specialTeams" type="com.horcu.apps.maura.models.SpecialTeams"/>
+        <variable name="position" type="com.horcu.apps.maura.models.Position"/>
+        <variable name="player" type="com.horcu.apps.maura.models.Player"/>
 
     </data>
 

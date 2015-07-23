@@ -2,15 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     >
     <data>
-        <variable name="game" type="com.horcu.apps.balln.models.Game"
+        <variable name="game" type="com.horcu.apps.maura.models.Game"
             />
-        <variable name="venue" type="com.horcu.apps.balln.models.Venue"
-            />
-
-        <variable name="player" type="com.horcu.apps.balln.models.Player"
+        <variable name="venue" type="com.horcu.apps.maura.models.Venue"
             />
 
-        <variable name="awayTeam" type="com.horcu.apps.balln.models.AwayTeam"
+        <variable name="player" type="com.horcu.apps.maura.models.Player"
+            />
+
+        <variable name="awayTeam" type="com.horcu.apps.maura.models.AwayTeam"
             />
     </data>
 

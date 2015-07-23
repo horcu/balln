@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="game" type="com.horcu.apps.balln.models.Game"/>
-        <variable name="offense" type="com.horcu.apps.balln.models.Offense"/>
-        <variable name="defense" type="com.horcu.apps.balln.models.Defense"/>
-        <variable name="specialTeams" type="com.horcu.apps.balln.models.SpecialTeams"/>
-        <variable name="position" type="com.horcu.apps.balln.models.Position"/>
-        <variable name="player" type="com.horcu.apps.balln.models.Player"/>
+        <variable name="game" type="com.horcu.apps.maura.models.Game"/>
+        <variable name="offense" type="com.horcu.apps.maura.models.Offense"/>
+        <variable name="defense" type="com.horcu.apps.maura.models.Defense"/>
+        <variable name="specialTeams" type="com.horcu.apps.maura.models.SpecialTeams"/>
+        <variable name="position" type="com.horcu.apps.maura.models.Position"/>
+        <variable name="player" type="com.horcu.apps.maura.models.Player"/>
 
     </data>
 
@@ -15,7 +16,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context="com.horcu.apps.balln.ui.fragments.GameActivityFragment">
+    tools:context="com.horcu.apps.maura.ui.fragments.GameActivityFragment">
 
     <RelativeLayout
         android:id="@+id/game_edit_top_frame"
@@ -123,6 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:visibility="visible"
+            android:background="#ffffff"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -130,18 +132,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="16dp"
+                android:padding="10dp"
 
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="16dip"-->
 
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:text="Quarterback"/>
+                    <!--android:textAlignment="textStart"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:text="Quarterback"/>-->
+
+                <com.marvinlabs.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/chooser1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Quarterback"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
 
                 <Space
                     android:layout_width="wrap_content"
@@ -301,6 +312,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="10dp"
+                android:visibility="gone"
                 android:background="#20dddddd">
 
                 <Space
@@ -499,7 +511,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14dip"
+                    android:textSize="16dip"
 
                     android:textAlignment="textEnd"
                     android:layout_gravity="end"
