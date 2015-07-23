@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.horcu.apps.maura.R;
 import com.horcu.apps.maura.models.Game;
 import com.horcu.apps.maura.models.Player;
+
 import com.horcu.apps.maura.ui.activities.PlayerChooserActivity;
 import com.marvinlabs.widget.floatinglabel.itemchooser.FloatingLabelItemChooser;
 

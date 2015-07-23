@@ -23,6 +23,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.horcu.apps.maura.R;
+
 import com.horcu.apps.maura.databinding.HeaderTestBinding;
 import com.horcu.apps.maura.databinding.ItemTestBinding;
 import com.horcu.apps.maura.models.Game;

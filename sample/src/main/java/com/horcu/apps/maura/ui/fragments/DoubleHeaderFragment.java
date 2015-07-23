@@ -28,10 +28,7 @@ import com.horcu.apps.maura.presenters.ActivityMainPresenter;
 import ca.barrenechea.widget.recyclerview.decoration.DoubleHeaderDecoration;
 
 public class DoubleHeaderFragment extends BaseDecorationFragment {
-    private ActivityMainPresenter presenter;
-    private ScheduleAdapter adapter;
-    private SearchView search;
-    RecyclerView recycler;
+
     private DoubleHeaderDecoration decor;
 
     @Override
