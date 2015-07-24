@@ -19,7 +19,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e8eaf6"
+    android:background="@color/main_bg_color"
     android:orientation="vertical">
 
     <!--<android.widget.Toolbar-->
@@ -48,8 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#e8eaf6"
-        android:layout_below="@+id/toolbar"
-        android:scrollbars="vertical" />
+       android:scrollbars="vertical" />
 
     <!--<TextView-->
         <!--android:id="@+id/empty"-->

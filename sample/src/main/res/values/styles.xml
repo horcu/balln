@@ -5,12 +5,14 @@
         <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
     <!--</style>-->
     <style name="Theme.DataBinding" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimary">@color/main_bg_color</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
     </style>
 
-    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+
+
+    <style name="FullscreenTheme" parent="Theme.AppCompat.Light">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@null</item>
         <item name="metaButtonBarStyle">@style/ButtonBar</item>
@@ -28,4 +30,59 @@
 
     <!-- Backward-compatible version of ?android:attr/buttonBarButtonStyle -->
     <style name="ButtonBarButton" />
+
+    <style name="FloatingLabelWidget" parent="@android:style/Widget.Holo">
+    </style>
+
+    <style name="FloatingLabelWidget.DropDownItem" parent="@android:style/Widget.Holo.TextView">
+        <item name="android:textSize">@dimen/flw_defaultDropDownItemTextSize</item>
+        <item name="android:padding">@dimen/flw_defaultDropDownItemPadding</item>
+        <item name="android:lines">1</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="FloatingLabelWidget.ItemPicker">
+    </style>
+
+    <style name="FloatingLabelWidget.InstantPicker">
+    </style>
+
+    <style name="FloatingLabelWidget.ItemChooser">
+    </style>
+
+    <style name="FloatingLabelWidget.Label" parent="@android:style/Widget.Holo.TextView">
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="FloatingLabelWidget.Label.EditText">
+    </style>
+
+    <style name="FloatingLabelWidget.InputWidget.EditText" parent="@android:style/Widget.Holo.EditText">
+        <item name="android:background">@drawable/bg_edittext</item>
+    </style>
+
+    <style name="FloatingLabelWidget.Label.AutoCompleteTextView">
+    </style>
+
+    <style name="FloatingLabelWidget.InputWidget.AutoCompleteTextView" parent="@android:style/Widget.Holo.AutoCompleteTextView">
+        <item name="android:background">@drawable/bg_edittext</item>
+    </style>
+
+    <style name="FloatingLabelWidget.Label.Picker">
+    </style>
+
+    <style name="FloatingLabelWidget.InputWidget.Picker" parent="@android:style/Widget.Holo.TextView">
+        <item name="android:background">@drawable/bg_edittext</item>
+        <item name="android:drawableRight">@drawable/ic_picker</item>
+    </style>
+
+    <style name="FloatingLabelWidget.Label.Chooser">
+    </style>
+
+    <style name="FloatingLabelWidget.InputWidget.Chooser" parent="@android:style/Widget.Holo.TextView">
+        <item name="android:background">@drawable/bg_edittext</item>
+        <item name="android:drawableRight">@drawable/ic_player</item>
+    </style>
+
+
 </resources>

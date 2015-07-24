@@ -17,6 +17,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/myqb"
         android:layout_width="150dp"
         android:layout_height="160dp"
         app:border_color="#cccccc"
@@ -59,6 +60,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="100dp"
+        android:id="@+id/theirqb"
         android:layout_height="110dp"
         app:border_color="#cccccc"
         app:border_width="1dp"

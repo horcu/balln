@@ -15,7 +15,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
 
-
+        //getActionBar().hide();
         setContentView(R.layout.activity_game);
     }
 

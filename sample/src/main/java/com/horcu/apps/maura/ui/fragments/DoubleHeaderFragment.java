@@ -17,13 +17,11 @@
 package com.horcu.apps.maura.ui.fragments;
 
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.horcu.apps.maura.R;
 import com.horcu.apps.maura.adapters.ScheduleAdapter;
-import com.horcu.apps.maura.presenters.ActivityMainPresenter;
 
 import ca.barrenechea.widget.recyclerview.decoration.DoubleHeaderDecoration;
 

@@ -25,7 +25,7 @@ android {
         minSdkVersion 20
         targetSdkVersion 22
         versionCode 1
-        versionName '1'
+        versionName 'maura'
     }
     buildTypes {
 //        debug {
@@ -53,8 +53,6 @@ android {
         abortOnError false
         disable 'InvalidPackage'
     }
-
-
 }
 
 dependencies {
@@ -77,5 +75,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-gcm:7.5.0'
     compile 'de.hdodenhof:circleimageview:1.3.0'
     compile 'com.android.support:cardview-v7:22.2.1'
-    compile 'com.marvinlabs:android-floatinglabel-widgets:1.6.1@aar'
+    //compile 'com.marvinlabs:android-floatinglabel-widgets:1.6.1@aar'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
 }

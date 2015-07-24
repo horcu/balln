@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/tools">
 
     <data>
         <variable name="game" type="com.horcu.apps.maura.models.Game"/>
@@ -13,16 +13,9 @@
     </data>
 
 <RelativeLayout
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    tools:context="com.horcu.apps.maura.ui.fragments.GameActivityFragment">
-
-    <RelativeLayout
-        android:id="@+id/game_edit_top_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+    android:background="@color/main_bg_color" >
 
         <LinearLayout
             android:id="@+id/game_edit_helmets"
@@ -33,8 +26,8 @@
 
             <ImageView
                 android:id="@+id/away_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
 
                 android:background="#ffffff"
                 android:layout_gravity="start"
@@ -109,14 +102,20 @@
             <ImageView
                 android:id="@+id/home_image"
                 android:layout_alignParentRight="true"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="end"
                 android:layout_marginLeft="5dp"
                 android:src="@drawable/cardinals_home"
                 android:background="#ffffff" />
 
         </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_below="@+id/game_edit_helmets" >
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -127,10 +126,15 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="10dp"
             card_view:cardElevation="2dp"
-            android:layout_below="@+id/game_edit_helmets"
             card_view:cardBackgroundColor="#ffffff"
             card_view:cardUseCompatPadding="true"
             card_view:cardCornerRadius="3dp">
+
+            <TextView
+                android:id="@+id/flw_floating_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
 
         <LinearLayout
             android:layout_below="@+id/game_edit_helmets"
@@ -147,20 +151,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:padding="10dp"
-
                 android:orientation="vertical">
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textSize="16dip"-->
-
-                    <!--android:textAlignment="textStart"-->
-                    <!--android:textColor="#999999"-->
-                    <!--android:text="Quarterback"/>-->
-
-                <com.marvinlabs.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/chooser1"
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/qbChooser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:flw_labelTextSize="14sp"
@@ -168,478 +162,132 @@
                     app:flw_floatOnFocus="true"
                     app:flw_inputWidgetTextSize="16sp"/>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:text="Running back"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/rbChooser"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:text="Wide reciever"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Running backs"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/wrChooser"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:layout_marginBottom="10dip"
-                    android:text="Tight end"/>
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Wide Recievers"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/teChooser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Tight ends"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
 
                 <View android:layout_height="1dp"
                     android:background="#dddddd"
                     android:layout_width="wrap_content"/>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/lbChooser"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dip"
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Linebackers"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
 
-                    android:textAlignment="textStart"
 
-                    android:textColor="#999999"
-                    android:text="Line backer"/>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/cbChooser"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:text="Corner back"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Linebackers"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/fsChooser"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:text="Strong safety"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Linebackers"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/sslbChooser"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:layout_marginBottom="10dip"
-                    android:text="Rush Line backer"/>
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Linebackers"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
 
                 <View android:layout_height="1dp"
                     android:background="#dddddd"
                     android:layout_width="wrap_content"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/prlbChooser"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:text="Kick returner"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Linebackers"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/krlbChooser"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:text="Punt returner"/>
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Linebackers"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/pChooser"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:text="Punter"/>
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Linebackers"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                    android:id="@+id/kChooser"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textStart"
-                    android:textColor="#999999"
-                    android:text="Place kicker"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:visibility="gone"
-                android:background="#20dddddd">
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="QB"/>
-
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="RB"/>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="WR"/>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="TE"/>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="LB"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="CB"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="SS"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="RLB"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="KR"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="PR"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="P"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="PK"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/players_home"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="16dp"
-
-                android:paddingTop="5dip"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:text="Quarterback"/>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:text="Running back"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:text="Wide reciever"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:layout_marginBottom="10dip"
-                    android:text="Tight end"/>
-
-                <View android:layout_height="1dp"
-                    android:background="#dddddd"
-                    android:layout_width="wrap_content"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-
-                    android:textColor="#999999"
-                    android:text="Line backer"/>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:text="Corner back"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:text="Strong safety"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:layout_marginBottom="10dip"
-                    android:text="Rush Line backer"/>
-
-                <View android:layout_height="1dp"
-                    android:background="#dddddd"
-                    android:layout_width="wrap_content"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:text="Kick returner"/>
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:text="Punt returner"/>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:text="Punter"/>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/position_spacing"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dip"
-                    android:background="#ffffff"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"
-                    android:textColor="#999999"
-                    android:text="Place kicker"/>
-
+                    app:flw_labelTextSize="14sp"
+                    app:flw_labelText="Linebackers"
+                    app:flw_floatOnFocus="true"
+                    app:flw_inputWidgetTextSize="16sp"/>
             </LinearLayout>
 
         </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </RelativeLayout>
 
+
+        </android.support.v7.widget.CardView>
+
+    </ScrollView>
 </RelativeLayout>
 </layout>

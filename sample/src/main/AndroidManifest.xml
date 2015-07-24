@@ -28,6 +28,7 @@
         </activity>
         <activity
             android:name=".ui.activities.GameActivity"
+            android:theme="@style/FullscreenTheme"
             android:label="@string/title_activity_game" >
         </activity>
         <activity
