@@ -4,16 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteCursorDriver;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQuery;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.JsonWriter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,64 +24,48 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.horcu.apps.maura.R;
-
 import com.horcu.apps.maura.databinding.HeaderTestBinding;
 import com.horcu.apps.maura.databinding.ItemTestBinding;
 import com.horcu.apps.maura.models.Game;
 import com.horcu.apps.maura.ui.activities.GameActivity;
-import com.horcu.apps.maura.utilities.DBHelper;
+import com.horcu.apps.maura.utilities.DBUtils;
 import com.horcu.apps.maura.utilities.JsonLoader;
 import com.horcu.apps.maura.utilities.TeamHelmets;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.List;
 import ca.barrenechea.widget.recyclerview.decoration.DoubleHeaderAdapter;
-import nl.elastique.poetry.data.json.JsonPersister;
+import nl.elastique.poetry.data.json.JsonUtils;
 
-
-public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHolder> implements
-        DoubleHeaderAdapter<ScheduleAdapter.HeaderHolder, ScheduleAdapter.SubHeaderHolder> {
+public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHolder> implements
+        DoubleHeaderAdapter<GameDayAdapter.HeaderHolder, GameDayAdapter.SubHeaderHolder> {
 
     private final View empty;
-    private DBHelper db = null;
-    private static ArrayList<Game> games = new ArrayList<>();
-    JSONObject schedule = null;
+    private static List<Game> games = new ArrayList<>();
+    JSONObject nflWeek = null;
     Context context = null;
-    public DBHelper mDbHelper = null;
-
 
     private LayoutInflater mInflater;
 
-    public ScheduleAdapter(final View empty, Context applicationContext) {
+    public GameDayAdapter(final View empty, Context applicationContext) {
 
         this.empty = empty;
         this.context = applicationContext;
         mInflater = LayoutInflater.from(context);
-        mDbHelper = new DBHelper(context, "mauraDb",null, 1);
 
-        try {//TODO get from DB first then raw if necessary then sync raw with DB
-            schedule  = JsonLoader.loadObject(context, R.raw.nfl_schedule_2014_week_1);
-           // depthChart  = JsonLoader.loadObject(context, R.raw.nfl_depth_chart_2014_week_1);
+      //  mDbHelper = new DBHelper(context, "mauraDb",null,1, R.raw.ormlite_config);//, R.raw.ormlite_config
 
-            // Get child arrays from JSON
-            String id = schedule.getString("id");
-            int number = schedule.getInt("number");
-            JSONArray Matchups = schedule.getJSONArray("games");
-            //  JSONObject venue = JsonPathResolver.resolveObject(Matchups.getJSONObject(0), "venue");
-
-            games = getGames(Matchups);
-
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        try {
+            games = getGames();
+            DBUtils.backup();
+      }
+         catch (JSONException e) {
             e.printStackTrace();
         }
         catch (Exception e) {
@@ -93,30 +74,36 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     }
 
     @NonNull
-    private ArrayList<Game> getGames(JSONArray matchups) throws JSONException {
-        ArrayList<Game> parsedGames = null;
-       //check db here then return raw if not present there
-   // Boolean inDb = true;
-       //get from Db here
-      //   String[] columns = new String[]{};
-        parsedGames = new ArrayList<>();
-
-     // Object it  = mDbHelper.getReadableDatabase().query("Game", columns , "select *", null, null, null , null);
-
-      //  if(it != null)
-       //    return null;
+    private List<Game> getGames() throws JSONException {
+        List<Game> parsedGames = null;
 
     try {
+        parsedGames = new ArrayList<>();
+        nflWeek = JsonLoader.loadObject(context, R.raw.nfl_schedule_2014_week_1);
+        parsedGames = Game.listAll(Game.class);
+//
+//        List<Game> xgames =   Game.findWithQuery(null, null,null);
+//
+//        if(parsedGames.size() > 0) {
+//           return parsedGames;
+//        }
+//        else{
 
+            JSONArray matchups = nflWeek.getJSONArray("games");
+            for (int i = 0; i < matchups.length(); i++) {
+                JSONObject g = (JSONObject) matchups.get(i);
+                ObjectMapper mapper = new ObjectMapper();
+                Game game = mapper.readValue(g.toString(), new TypeReference<Game>() {
 
-        for (int i = 0; i < matchups.length(); i++) {
-            JSONObject g = (JSONObject) matchups.get(i);
-            ObjectMapper mapper = new ObjectMapper();
-            Game game = mapper.readValue(g.toString(), new TypeReference<Game>() {
-            });
+                });
 
-            if (game != null)
-            { parsedGames.add(game);}
+                if (game != null)
+                { parsedGames.add(game);
+                game.save();
+                }
+         //   }
+
+            Game.saveInTx(parsedGames);
         }
 
     } catch (JSONException e) {
@@ -128,26 +115,14 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     } catch (IOException e) {
         e.printStackTrace();
     }
-         //add them to db here
-
-        // AddGameToDb(matchups);
-
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         return parsedGames;
     }
 
-    private void AddGameToDb(JSONArray game) {
-        try {
-            JsonPersister persister = new JsonPersister(mDbHelper.getWritableDatabase());
-            persister.persistArray(Game.class, game);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-    }
-
-    private boolean inDb() {
-        return false;
-    }
 
     @Override
     public int getItemCount() {
@@ -222,7 +197,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         {
             final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             HeaderTestBinding   binding = DataBindingUtil.inflate(inflater, R.layout.header_test, parent, false);
-            //  binding.setSchedule(schedule);
 
             return new SubHeaderHolder(binding.matchup, binding);
         }
@@ -234,7 +208,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     }
 
     @Override
-    public ScheduleAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+    public GameDayAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
 
         try
         {

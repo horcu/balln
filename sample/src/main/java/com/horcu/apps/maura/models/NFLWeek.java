@@ -15,25 +15,41 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-    "id",
+    //"id",
     "number",
     "games"
 })
-public class NFLWeek implements Parcelable
+
+//@DatabaseTable(tableName="NFLWeek")
+public class NFLWeek extends SugarRecord<NFLWeek> implements Parcelable
 {
 
-    @JsonProperty("id")
-    private String id;
+    public NFLWeek(){}
+
+//    @DatabaseField(columnName = "id")
+//    @JsonProperty("id")
+//    private String id;
+
+  //  @DatabaseField(columnName = "number")
     @JsonProperty("number")
     private Integer number;
+
+  //  @DatabaseField(columnName = "games", foreign = true)
     @JsonProperty("games")
     private List<Game> games = new ArrayList<Game>();
+
+    @Ignore
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<NFLWeek> CREATOR = new Creator<NFLWeek>() {
@@ -41,7 +57,7 @@ public class NFLWeek implements Parcelable
 
         public NFLWeek createFromParcel(Parcel in) {
             NFLWeek instance = new NFLWeek();
-            instance.id = ((String) in.readValue((String.class.getClassLoader())));
+         //   instance.id = ((String) in.readValue((String.class.getClassLoader())));
             instance.number = ((Integer) in.readValue((Integer.class.getClassLoader())));
             in.readList(instance.games, (Game.class.getClassLoader()));
             instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
@@ -54,26 +70,26 @@ public class NFLWeek implements Parcelable
 
     }
     ;
+//
+//    /**
+//     *
+//     * @return
+//     *     The id
+//     */
+//    @JsonProperty("id")
+//    public String getId() {
+//        return id;
+//    }
 
-    /**
-     * 
-     * @return
-     *     The id
-     */
-    @JsonProperty("id")
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * 
-     * @param id
-     *     The id
-     */
-    @JsonProperty("id")
-    public void setId(String id) {
-        this.id = id;
-    }
+//    /**
+//     *
+//     * @param id
+//     *     The id
+//     */
+//    @JsonProperty("id")
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
     /**
      * 
@@ -143,7 +159,7 @@ public class NFLWeek implements Parcelable
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
+      //  dest.writeValue(id);
         dest.writeValue(number);
         dest.writeList(games);
         dest.writeValue(additionalProperties);

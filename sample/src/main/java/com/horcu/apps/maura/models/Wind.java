@@ -13,6 +13,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -22,13 +27,21 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
     "speed",
     "direction"
 })
-public class Wind implements Parcelable
-{
 
+//@DatabaseTable(tableName="Wind")
+public class Wind extends SugarRecord<Wind> implements Parcelable
+{
+    public Wind(){}
+
+  //  @DatabaseField(columnName = "speed")
     @JsonProperty("speed")
     private Integer speed;
+
+ //   @DatabaseField(columnName = "direction")
     @JsonProperty("direction")
     private String direction;
+
+    @Ignore
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<Wind> CREATOR = new Creator<Wind>() {

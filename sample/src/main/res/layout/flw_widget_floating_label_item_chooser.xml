@@ -15,5 +15,6 @@
         android:id="@id/flw_input_widget"
         style="@style/FloatingLabelWidget.InputWidget.Chooser"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:visibility="invisible"
+                android:layout_height="wrap_content"/>
 </merge>

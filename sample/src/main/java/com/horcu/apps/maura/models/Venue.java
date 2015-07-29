@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.orm.SugarRecord;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-    "id",
+   // "id",
     "country",
     "name",
     "city",
@@ -30,29 +34,53 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
     "zip",
     "address"
 })
-public class Venue implements Parcelable
-{
 
-    @JsonProperty("id")
-    private String id;
+@DatabaseTable(tableName="Venue")
+public class Venue extends SugarRecord<Venue> implements Parcelable
+{
+    public Venue(){}
+
+//    @DatabaseField(columnName = "id")
+//    @JsonProperty("id")
+//    private String id;
+
+    @DatabaseField(columnName = "country")
     @JsonProperty("country")
     private String country;
+
+    @DatabaseField(columnName = "name")
     @JsonProperty("name")
     private String name;
+
+    @DatabaseField(columnName = "city")
     @JsonProperty("city")
     private String city;
+
+    @DatabaseField(columnName = "team_colors")
     @JsonProperty("state")
     private String state;
+
+    @DatabaseField(columnName = "team_colors")
     @JsonProperty("capacity")
     private Integer capacity;
+
+    @DatabaseField(columnName = "team_colors")
     @JsonProperty("surface")
     private String surface;
+
+    @DatabaseField(columnName = "team_colors")
     @JsonProperty("type")
     private String type;
+
+    @DatabaseField(columnName = "team_colors")
     @JsonProperty("zip")
     private String zip;
+
+    @DatabaseField(columnName = "address")
     @JsonProperty("address")
     private String address;
+
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<Venue> CREATOR = new Creator<Venue>() {
@@ -60,7 +88,7 @@ public class Venue implements Parcelable
 
         public Venue createFromParcel(Parcel in) {
             Venue instance = new Venue();
-            instance.id = ((String) in.readValue((String.class.getClassLoader())));
+           // instance.id = ((String) in.readValue((String.class.getClassLoader())));
             instance.country = ((String) in.readValue((String.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
             instance.city = ((String) in.readValue((String.class.getClassLoader())));
@@ -81,25 +109,25 @@ public class Venue implements Parcelable
     }
     ;
 
-    /**
-     * 
-     * @return
-     *     The id
-     */
-    @JsonProperty("id")
-    public String getId() {
-        return id;
-    }
+//    /**
+//     *
+//     * @return
+//     *     The id
+//     */
+//    @JsonProperty("id")
+//    public String getId() {
+//        return id;
+//    }
 
-    /**
-     * 
-     * @param id
-     *     The id
-     */
-    @JsonProperty("id")
-    public void setId(String id) {
-        this.id = id;
-    }
+//    /**
+//     *
+//     * @param id
+//     *     The id
+//     */
+//    @JsonProperty("id")
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
     /**
      * 
@@ -309,7 +337,7 @@ public class Venue implements Parcelable
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
+       // dest.writeValue(id);
         dest.writeValue(country);
         dest.writeValue(name);
         dest.writeValue(city);

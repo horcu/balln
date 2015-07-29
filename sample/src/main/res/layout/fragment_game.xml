@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable name="game" type="com.horcu.apps.maura.models.Game"/>
@@ -15,7 +14,10 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_bg_color" >
+    android:background="@color/main_bg_color"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.horcu.apps.maura.ui.activities.GameActivity">
 
         <LinearLayout
             android:id="@+id/game_edit_helmets"
@@ -117,176 +119,544 @@
             android:scrollbars="none"
             android:layout_below="@+id/game_edit_helmets" >
 
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view"
-            android:layout_gravity="top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="10dp"
-            card_view:cardElevation="2dp"
-            card_view:cardBackgroundColor="#ffffff"
-            card_view:cardUseCompatPadding="true"
-            card_view:cardCornerRadius="3dp">
-
-            <TextView
-                android:id="@+id/flw_floating_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-        <LinearLayout
-            android:layout_below="@+id/game_edit_helmets"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:visibility="visible"
-            android:background="#ffffff"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/players_away"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/qbChooser"
+               <!--Offense section-->
+                <TextView android:layout_height="wrap_content"
+                    android:id="@+id/offense_txt"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:text="Offense"
+                    android:textAllCaps="true"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/primary_dark"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    />
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/offense_card_view"
+                    android:layout_gravity="top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Quarterback"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
+                    android:layout_marginBottom="5dp"
+                    card_view:cardElevation="2dp"
+                    android:layout_below="@+id/offense_txt"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardUseCompatPadding="true"
+                    card_view:cardCornerRadius="3dp">
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/flw_floating_label"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_below="@+id/game_edit_helmets"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:visibility="visible"
+                            android:background="#ffffff"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/players_away_offense"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+
+                                android:padding="10dp"
+                                android:orientation="vertical">
+
+                                <!--<TextView android:layout_height="wrap_content"-->
+                                <!--android:background="@android:color/transparent"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:text="Offense"-->
+                                <!--android:textAllCaps="true"-->
+                                <!--android:textStyle="bold|italic"-->
+                                <!--android:textColor="@color/primary_dark"-->
+                                <!--android:padding="5dp"-->
+                                <!--/>-->
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/qbChooser_offense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Quarterback"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
 
 
 
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/rbChooser"
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/rbChooser_offense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Running backs"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/wrChooser_offense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Wide Recievers"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/teChooser_offense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Tight ends"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_below="@+id/game_edit_helmets_home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:visibility="visible"
+                            android:background="#ffffff"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/players_home_offense"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:orientation="vertical">
+
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/qbChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Quarterback"
+                                    app:flw_floatOnFocus="true"
+                                    android:textAlignment="textEnd"
+                                    android:foregroundGravity="right"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/rbChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Running backs"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/wrChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Wide Recievers"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/teChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Tight ends"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--Defense section-->
+                <TextView android:layout_height="wrap_content"
+                    android:id="@+id/defense_txt"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:text="Defense"
+                    android:textAllCaps="true"
+                    android:textStyle="bold|italic"
+                    android:layout_below="@+id/offense_card_view"
+                    android:textColor="@color/primary_dark"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    />
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/defense_card_view"
+                    android:layout_gravity="top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Running backs"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
+                    android:layout_marginBottom="5dp"
+                    card_view:cardElevation="2dp"
+                    android:layout_below="@+id/defense_txt"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardUseCompatPadding="true"
+                    card_view:cardCornerRadius="3dp">
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/flw_floating_label"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
 
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/wrChooser"
+                        <LinearLayout
+                            android:layout_below="@+id/game_edit_helmets"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:visibility="visible"
+                            android:background="#ffffff"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/players_away_defense"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:orientation="vertical">
+
+                                <!--<TextView android:layout_height="wrap_content"-->
+                                <!--android:background="@android:color/transparent"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:text="Offense"-->
+                                <!--android:textAllCaps="true"-->
+                                <!--android:textStyle="bold|italic"-->
+                                <!--android:textColor="@color/primary_dark"-->
+                                <!--android:padding="5dp"-->
+                                <!--/>-->
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/lbChooser_defense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Linebackers"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/cbChooser_defense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Cornerback"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/fsChooser_defense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Free safety"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/sslbChooser_defense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Strong safety"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+
+                                                           </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_below="@+id/game_edit_helmets_home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:visibility="visible"
+                            android:background="#ffffff"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/players_home_defense"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:orientation="vertical">
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/lbChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Linebacker"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/cbChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Cornerback"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/fsChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Linebackers"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/sslbChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Strong safety"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <!--Special teams section-->
+                <TextView android:layout_height="wrap_content"
+                    android:id="@+id/teams_txt"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:text="Special teams"
+                    android:textAllCaps="true"
+                    android:layout_below="@+id/defense_card_view"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/primary_dark"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    />
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/teams_card_view"
+                    android:layout_gravity="top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Wide Recievers"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
+                    android:layout_marginBottom="5dp"
+                    card_view:cardElevation="2dp"
+                    android:layout_below="@+id/teams_txt"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardUseCompatPadding="true"
+                    card_view:cardCornerRadius="3dp">
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/flw_floating_label"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
 
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/teChooser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Tight ends"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
+                        <LinearLayout
+                            android:layout_below="@+id/game_edit_helmets"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:visibility="visible"
+                            android:background="#ffffff"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                <View android:layout_height="1dp"
-                    android:background="#dddddd"
-                    android:layout_width="wrap_content"/>
+                            <LinearLayout
+                                android:id="@+id/players_away_teams"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:orientation="vertical">
 
-
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/lbChooser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Linebackers"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
-
-
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/cbChooser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Linebackers"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
-
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/fsChooser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Linebackers"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
+                                <!--<TextView android:layout_height="wrap_content"-->
+                                <!--android:background="@android:color/transparent"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:text="Offense"-->
+                                <!--android:textAllCaps="true"-->
+                                <!--android:textStyle="bold|italic"-->
+                                <!--android:textColor="@color/primary_dark"-->
+                                <!--android:padding="5dp"-->
+                                <!--/>-->
 
 
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/sslbChooser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Linebackers"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
-
-                <View android:layout_height="1dp"
-                    android:background="#dddddd"
-                    android:layout_width="wrap_content"/>
-
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/prlbChooser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Linebackers"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/prlbChooser"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Punt returner"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
 
 
 
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/krlbChooser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Linebackers"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/krlbChooser"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Kick returner"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
 
 
 
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/pChooser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Linebackers"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/pChooser"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Punter"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
 
 
 
-                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
-                    android:id="@+id/kChooser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:flw_labelTextSize="14sp"
-                    app:flw_labelText="Linebackers"
-                    app:flw_floatOnFocus="true"
-                    app:flw_inputWidgetTextSize="16sp"/>
-            </LinearLayout>
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/kChooser"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Kicker"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+                            </LinearLayout>
 
-        </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_below="@+id/game_edit_helmets_home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:visibility="visible"
+                            android:background="#ffffff"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/players_home_teams"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:orientation="vertical">
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/prlbChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Linebackers"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
 
 
-        </android.support.v7.widget.CardView>
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/krlbChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Linebackers"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/pChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Linebackers"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+
+
+
+                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                    android:id="@+id/kChooser_home"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:flw_labelTextSize="14sp"
+                                    app:flw_labelText="Linebackers"
+                                    app:flw_floatOnFocus="true"
+                                    app:flw_inputWidgetTextSize="16sp"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </RelativeLayout>
 
     </ScrollView>
 </RelativeLayout>

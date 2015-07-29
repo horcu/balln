@@ -15,6 +15,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -25,15 +30,26 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
     "desc",
     "players"
 })
-public class Position implements Parcelable
+
+//@DatabaseTable(tableName="Position")
+public class Position extends SugarRecord<Position> implements Parcelable
 {
 
+    public Position(){}
+
+  //  @DatabaseField(columnName = "name")
     @JsonProperty("name")
     private String name;
+
+  //  @DatabaseField(columnName = "desc")
     @JsonProperty("desc")
     private String desc;
+
+  //  @DatabaseField(columnName = "players", foreign = true)
     @JsonProperty("players")
     private List<Player> players = new ArrayList<Player>();
+
+    @Ignore
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<Position> CREATOR = new Creator<Position>() {

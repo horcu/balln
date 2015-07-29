@@ -13,13 +13,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-    "id",
+   // "id",
     "scheduled",
     "home_rotation",
     "away_rotation",
@@ -29,27 +34,50 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
     "broadcast",
     "weather"
 })
-public class Game   implements Parcelable
+
+//@DatabaseTable(tableName="Game")
+public class Game  extends SugarRecord<Game> implements Parcelable
 {
 
+    public Game(){}
+/*
+    @DatabaseField(columnName = "id")
     @JsonProperty("id")
-    private String id;
+    private String id;*/
+
+   // @DatabaseField(columnName = "scheduled")
     @JsonProperty("scheduled")
     private String scheduled;
+
+   // @DatabaseField(columnName = "home_rotation")
     @JsonProperty("home_rotation")
     private String homeRotation;
+
+   // @DatabaseField(columnName = "away_rotation")
     @JsonProperty("away_rotation")
     private String awayRotation;
+
+   // @DatabaseField(columnName = "home_team", foreign = true)
     @JsonProperty("home_team")
     private HomeTeam homeTeam;
+
+   // @DatabaseField(columnName = "away_team", foreign = true)
     @JsonProperty("away_team")
     private AwayTeam awayTeam;
+
+   // @DatabaseField(columnName = "venue", foreign = true)
     @JsonProperty("venue")
     private Venue venue;
+
+  //  @DatabaseField(columnName = "broadcast", foreign = true)
     @JsonProperty("broadcast")
     private Broadcast broadcast;
+
+   // @DatabaseField(columnName = "weather", foreign = true)
     @JsonProperty("weather")
     private Weather weather;
+
+    @Ignore
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<Game> CREATOR = new Creator<Game>() {
@@ -57,7 +85,7 @@ public class Game   implements Parcelable
 
         public Game createFromParcel(Parcel in) {
             Game instance = new Game();
-            instance.id = ((String) in.readValue((String.class.getClassLoader())));
+           // instance.id = ((String) in.readValue((String.class.getClassLoader())));
             instance.scheduled = ((String) in.readValue((String.class.getClassLoader())));
             instance.homeRotation = ((String) in.readValue((String.class.getClassLoader())));
             instance.awayRotation = ((String) in.readValue((String.class.getClassLoader())));
@@ -80,20 +108,21 @@ public class Game   implements Parcelable
      * @return
      *     The id
      */
-    @JsonProperty("id")
-    public String getId() {
-        return id;
-    }
+//    @Ignore
+//      @JsonProperty("id")
+//      public String getId() {
+//    return id;
+//}
 
-    /**
-     * 
-     * @param id
-     *     The id
-     */
-    @JsonProperty("id")
-    public void setId(String id) {
-        this.id = id;
-    }
+//    /**
+//     *
+//     * @param id
+//     *     The id
+//     */
+//    @JsonProperty("id")
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
     /**
      * 
@@ -283,7 +312,7 @@ public class Game   implements Parcelable
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
+      //  dest.writeValue(id);
         dest.writeValue(scheduled);
         dest.writeValue(homeRotation);
         dest.writeValue(awayRotation);

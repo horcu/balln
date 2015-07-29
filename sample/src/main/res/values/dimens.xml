@@ -10,5 +10,6 @@
 
     <dimen name="flw_defaultDropDownItemTextSize">14sp</dimen>
     <dimen name="flw_defaultDropDownItemPadding">16dp</dimen>
+    <dimen name="gone">0dp</dimen>
 
 </resources>

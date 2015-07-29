@@ -13,6 +13,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -24,15 +29,26 @@ import org.apache.commons.lang.builder.ToStringBuilder;
     "secondary_color",
     "tertiary_color"
 })
-public class TeamColors implements Parcelable
+
+//@DatabaseTable(tableName="TeamColors")
+public class TeamColors extends SugarRecord<TeamColors> implements Parcelable
 {
 
+    public TeamColors(){}
+
+   // @DatabaseField(columnName = "primary_color")
     @JsonProperty("primary_color")
     private String primaryColor;
+
+    //@DatabaseField(columnName = "secondary_color")
     @JsonProperty("secondary_color")
     private String secondaryColor;
+
+  //  @DatabaseField(columnName = "tertiary_color")
     @JsonProperty("tertiary_color")
     private String tertiaryColor;
+
+    @Ignore
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<TeamColors> CREATOR = new Creator<TeamColors>() {

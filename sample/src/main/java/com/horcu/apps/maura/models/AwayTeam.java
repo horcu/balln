@@ -13,37 +13,68 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-    "id",
+    //"id",
     "name",
     "market",
     "logo",
+    "team_colors",
     "offense",
     "defense",
     "special_teams"
 })
-public class AwayTeam implements Parcelable
+
+//@DatabaseTable(tableName="AwayTeam")
+public class AwayTeam extends SugarRecord<AwayTeam> implements Parcelable
 {
 
-    @JsonProperty("id")
-    private String id;
+    public AwayTeam(){}
+
+
+
+//    @DatabaseField(columnName = "id")
+//    @JsonProperty("id")
+//    private String id;
+
+   // @DatabaseField(columnName = "name")
     @JsonProperty("name")
     private String name;
+
+  //  @DatabaseField(columnName = "market")
     @JsonProperty("market")
     private String market;
+
+  //  @DatabaseField(columnName = "logo")
     @JsonProperty("logo")
     private String logo;
+
+  //  @DatabaseField(columnName = "team_colors", foreign = true)
+    @JsonProperty("team_colors")
+    private TeamColors teamColors;
+
+ //   @DatabaseField(columnName = "offense", foreign = true)
     @JsonProperty("offense")
     private Offense offense;
+
+ //   @DatabaseField(columnName = "defense", foreign = true)
     @JsonProperty("defense")
     private Defense defense;
+
+  //  @DatabaseField(columnName = "special_teams", foreign = true)
     @JsonProperty("special_teams")
     private SpecialTeams specialTeams;
+
+    @Ignore
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<AwayTeam> CREATOR = new Creator<AwayTeam>() {
@@ -51,10 +82,11 @@ public class AwayTeam implements Parcelable
 
         public AwayTeam createFromParcel(Parcel in) {
             AwayTeam instance = new AwayTeam();
-            instance.id = ((String) in.readValue((String.class.getClassLoader())));
+           // instance.id = ((String) in.readValue((String.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
             instance.market = ((String) in.readValue((String.class.getClassLoader())));
             instance.logo = ((String) in.readValue((String.class.getClassLoader())));
+            instance.teamColors = ((TeamColors) in.readValue((TeamColors.class.getClassLoader())));
             instance.offense = ((Offense) in.readValue((Offense.class.getClassLoader())));
             instance.defense = ((Defense) in.readValue((Defense.class.getClassLoader())));
             instance.specialTeams = ((SpecialTeams) in.readValue((SpecialTeams.class.getClassLoader())));
@@ -69,25 +101,25 @@ public class AwayTeam implements Parcelable
     }
     ;
 
-    /**
-     * 
-     * @return
-     *     The id
-     */
-    @JsonProperty("id")
-    public String getId() {
-        return id;
-    }
+//    /**
+//     *
+//     * @return
+//     *     The id
+//     */
+//    @JsonProperty("id")
+//    public String getId() {
+//        return id;
+//    }
 
-    /**
-     * 
-     * @param id
-     *     The id
-     */
-    @JsonProperty("id")
-    public void setId(String id) {
-        this.id = id;
-    }
+//    /**
+//     *
+//     * @param id
+//     *     The id
+//     */
+//    @JsonProperty("id")
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
     /**
      * 
@@ -149,6 +181,25 @@ public class AwayTeam implements Parcelable
         this.logo = logo;
     }
 
+    /**
+     *
+     * @param team colors
+     *     team colors
+     */
+    @JsonProperty("team_colors")
+    public TeamColors getTeamColors() {
+        return teamColors;
+    }
+
+    /**
+     *
+     * @param team colors
+     *     team colors
+     */
+    @JsonProperty("team_colors")
+    public void setTeamColors(TeamColors teamColors) {
+        this.teamColors = teamColors;
+    }
     /**
      * 
      * @return
@@ -221,7 +272,7 @@ public class AwayTeam implements Parcelable
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(id).append(name).append(market).append(logo).append(offense).append(defense).append(specialTeams).append(additionalProperties).toHashCode();
+        return new HashCodeBuilder().append(id).append(name).append(market).append(logo).append(teamColors).append(offense).append(defense).append(specialTeams).append(additionalProperties).toHashCode();
     }
 
     @Override
@@ -233,14 +284,15 @@ public class AwayTeam implements Parcelable
             return false;
         }
         AwayTeam rhs = ((AwayTeam) other);
-        return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name).append(market, rhs.market).append(logo, rhs.logo).append(offense, rhs.offense).append(defense, rhs.defense).append(specialTeams, rhs.specialTeams).append(additionalProperties, rhs.additionalProperties).isEquals();
+        return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name).append(market, rhs.market).append(logo, rhs.logo).append(teamColors, rhs.teamColors).append(offense, rhs.offense).append(defense, rhs.defense).append(specialTeams, rhs.specialTeams).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
+       // dest.writeValue(id);
         dest.writeValue(name);
         dest.writeValue(market);
         dest.writeValue(logo);
+        dest.writeValue(teamColors);
         dest.writeValue(offense);
         dest.writeValue(defense);
         dest.writeValue(specialTeams);

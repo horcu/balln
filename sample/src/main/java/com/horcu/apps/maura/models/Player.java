@@ -13,34 +13,55 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-    "id",
+    //"id",
     "name",
     "position",
     "jersey_number",
     "status",
     "depth"
 })
-public class Player implements Parcelable
-{
 
-    @JsonProperty("id")
-    private String id;
+//@DatabaseTable(tableName="Player")
+public class Player extends SugarRecord<Player> implements Parcelable
+{
+    public Player(){}
+
+ //   @DatabaseField(columnName = "id")
+  //  @JsonProperty("id")
+ //   private String id;
+
+ //   @DatabaseField(columnName = "name")
     @JsonProperty("name")
     private String name;
+
+  //  @DatabaseField(columnName = "position")
     @JsonProperty("position")
     private String position;
+
+ //   @DatabaseField(columnName = "jersey_number")
     @JsonProperty("jersey_number")
     private Integer jerseyNumber;
+
+  //  @DatabaseField(columnName = "status")
     @JsonProperty("status")
     private String status;
+
+ //   @DatabaseField(columnName = "depth")
     @JsonProperty("depth")
     private Integer depth;
+
+    @Ignore
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<Player> CREATOR = new Creator<Player>() {
@@ -48,7 +69,7 @@ public class Player implements Parcelable
 
         public Player createFromParcel(Parcel in) {
             Player instance = new Player();
-            instance.id = ((String) in.readValue((String.class.getClassLoader())));
+            //instance.id = ((String) in.readValue((String.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
             instance.position = ((String) in.readValue((String.class.getClassLoader())));
             instance.jerseyNumber = ((Integer) in.readValue((Integer.class.getClassLoader())));
@@ -65,25 +86,25 @@ public class Player implements Parcelable
     }
     ;
 
-    /**
-     * 
-     * @return
-     *     The id
-     */
-    @JsonProperty("id")
-    public String getId() {
-        return id;
-    }
+//    /**
+//     *
+//     * @return
+//     *     The id
+//     */
+//    @JsonProperty("id")
+//    public String getId() {
+//        return id;
+//    }
 
-    /**
-     * 
-     * @param id
-     *     The id
-     */
-    @JsonProperty("id")
-    public void setId(String id) {
-        this.id = id;
-    }
+//    /**
+//     *
+//     * @param id
+//     *     The id
+//     */
+//    @JsonProperty("id")
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
     /**
      * 
@@ -213,7 +234,7 @@ public class Player implements Parcelable
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(id);
+       // dest.writeValue(id);
         dest.writeValue(name);
         dest.writeValue(position);
         dest.writeValue(jerseyNumber);

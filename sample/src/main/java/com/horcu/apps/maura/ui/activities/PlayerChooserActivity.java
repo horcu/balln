@@ -28,7 +28,7 @@ public class PlayerChooserActivity extends ListActivity {
 
      class playerShell{
          String name;
-         String id;
+         Long id;
 
      }
 
@@ -39,9 +39,23 @@ public class PlayerChooserActivity extends ListActivity {
 
         Intent intent = getIntent();
         game = intent.getParcelableExtra("game");
-        Integer position = intent.getIntExtra("position", 8);
+        Integer side = intent.getParcelableExtra("side");
+        Integer position = intent.getIntExtra("position", 0);
+        ArrayList<Player> players = null;
 
-       ArrayList<Player> players = (ArrayList<Player>) game.getAwayTeam().getOffense().getPositions().get(position).getPlayers();
+        if(side == 0) //offense
+        {
+            players = (ArrayList<Player>) game.getAwayTeam().getOffense().getPositions().get(position).getPlayers();
+        }
+        else if(side == 1) //defense
+        {
+            players = (ArrayList<Player>) game.getAwayTeam().getDefense().getPositions().get(position).getPlayers();
+        }
+        else //teams
+        {
+            players = (ArrayList<Player>) game.getAwayTeam().getSpecialTeams().getPositions().get(position).getPlayers();
+        }
+
         ArrayList<playerShell>playerShells = new ArrayList<>();
         ArrayList<String>playerNames = new ArrayList<>();
 
@@ -57,7 +71,6 @@ public class PlayerChooserActivity extends ListActivity {
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, playerNames);
         setListAdapter(adapter);
-
     }
 
     @Override

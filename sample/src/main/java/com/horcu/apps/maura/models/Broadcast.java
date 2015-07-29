@@ -13,6 +13,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -23,15 +28,25 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
     "satellite",
     "internet"
 })
-public class Broadcast implements Parcelable
-{
 
+//@DatabaseTable(tableName="Broadcast")
+public class Broadcast extends SugarRecord<Broadcast> implements Parcelable
+{
+    public Broadcast(){}
+
+    //@DatabaseField(columnName = "network")
     @JsonProperty("network")
     private String network;
+
+   // @DatabaseField(columnName = "satellite")
     @JsonProperty("satellite")
     private String satellite;
+
+   // @DatabaseField(columnName = "internet")
     @JsonProperty("internet")
     private String internet;
+
+    @Ignore
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<Broadcast> CREATOR = new Creator<Broadcast>() {

@@ -21,7 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.horcu.apps.maura.R;
-import com.horcu.apps.maura.adapters.ScheduleAdapter;
+import com.horcu.apps.maura.adapters.GameDayAdapter;
 
 import ca.barrenechea.widget.recyclerview.decoration.DoubleHeaderDecoration;
 
@@ -32,7 +32,7 @@ public class DoubleHeaderFragment extends BaseDecorationFragment {
     @Override
     protected void setAdapterAndDecor(RecyclerView list) {
         try {
-            final ScheduleAdapter adapter = new ScheduleAdapter(new View(getActivity()),  this.getActivity());
+            final GameDayAdapter adapter = new GameDayAdapter(new View(getActivity()),  this.getActivity());
             decor = new DoubleHeaderDecoration(adapter);
             setHasOptionsMenu(true);
 
