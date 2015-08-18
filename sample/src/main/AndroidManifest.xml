@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.horcu.apps.maura">
+    package="com.horcu.apps.balln">
 
 
 
@@ -15,15 +15,10 @@
         android:label="@string/app_name"
 
         android:theme="@style/Theme.DataBinding"
-        android:name="com.orm.SugarApp">
-
-        <meta-data android:name="DATABASE" android:value="mauraDb" />
-        <meta-data android:name="VERSION" android:value="0.0.0.1" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.horcu" />
+        android:name="com.horcu.apps.balln.ballnApp">
 
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name="com.horcu.apps.balln.ui.activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,20 +27,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.PlayerChooserActivity"
+            android:name="com.horcu.apps.balln.ui.activities.PlayerChooserActivity"
             android:label="@string/title_activity_player_chooser"
-            android:parentActivityName=".ui.activities.GameActivity" >
+            android:parentActivityName="com.horcu.apps.balln.ui.activities.GameActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ui.activities.GameActivity" />
+                android:value="com.horcu.apps.balln.ui.activities.GameActivity" />
         </activity>
         <activity
-            android:name=".ui.activities.GameActivity"
-            android:theme="@style/FullscreenTheme"
+            android:name="com.horcu.apps.balln.ui.activities.GameActivity"
+            android:theme="@style/Theme.DataBinding"
             android:label="@string/title_activity_game" >
         </activity>
         <activity
-            android:name=".ui.activities.SettingsActivity"
+            android:name="com.horcu.apps.balln.ui.activities.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
     </application>

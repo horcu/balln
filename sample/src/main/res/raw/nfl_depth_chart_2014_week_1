@@ -6,7 +6,7 @@
         "id": "SEA",
         "name": "Seahawks",
         "market": "Seattle",
-        "offense": {
+        "offenseId": {
             "positions": [{
                 "name": "FB",
                 "desc": "Fullback",
@@ -245,7 +245,7 @@
                 }]
             }]
         },
-        "defense": {
+        "defenseId": {
             "type": "Base 4-3 D",
             "positions": [{
                 "name": "RDT",
@@ -573,7 +573,7 @@
         "id": "GB",
         "name": "Packers",
         "market": "Green Bay",
-        "offense": {
+        "offenseId": {
             "positions": [{
                 "name": "FB",
                 "desc": "Fullback",
@@ -798,7 +798,7 @@
                 }]
             }]
         },
-        "defense": {
+        "defenseId": {
             "type": "Base 3-4 D",
             "positions": [{
                 "name": "LOLB",

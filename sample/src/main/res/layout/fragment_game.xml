@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <variable name="game" type="com.horcu.apps.maura.models.Game"/>
-        <variable name="offense" type="com.horcu.apps.maura.models.Offense"/>
-        <variable name="defense" type="com.horcu.apps.maura.models.Defense"/>
-        <variable name="specialTeams" type="com.horcu.apps.maura.models.SpecialTeams"/>
-        <variable name="position" type="com.horcu.apps.maura.models.Position"/>
-        <variable name="player" type="com.horcu.apps.maura.models.Player"/>
+        <variable name="game" type="com.horcu.apps.balln.models.game.Game"/>
+        <variable name="offenseId" type="com.horcu.apps.balln.models.game.Offense"/>
+        <variable name="defenseId" type="com.horcu.apps.balln.models.game.Defense"/>
+        <variable name="specialTeamsId" type="com.horcu.apps.balln.models.game.SpecialTeams"/>
+        <variable name="position" type="com.horcu.apps.balln.models.game.Position"/>
+        <variable name="player" type="com.horcu.apps.balln.models.game.Player"/>
 
     </data>
 
@@ -17,7 +17,7 @@
     android:background="@color/main_bg_color"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.horcu.apps.maura.ui.activities.GameActivity">
+    tools:context="com.horcu.apps.balln.ui.activities.GameActivity">
 
         <LinearLayout
             android:id="@+id/game_edit_helmets"
@@ -188,7 +188,7 @@
                                 <!--android:padding="5dp"-->
                                 <!--/>-->
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/qbChooser_offense"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -199,7 +199,7 @@
 
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/rbChooser_offense"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
                                     app:flw_inputWidgetTextSize="16sp"/>
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/wrChooser_offense"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
                                     app:flw_inputWidgetTextSize="16sp"/>
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/teChooser_offense"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -253,7 +253,7 @@
 
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/qbChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -266,7 +266,7 @@
 
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/rbChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -276,7 +276,7 @@
                                     app:flw_inputWidgetTextSize="16sp"/>
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/wrChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -286,7 +286,7 @@
                                     app:flw_inputWidgetTextSize="16sp"/>
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/teChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -369,7 +369,7 @@
                                 <!--/>-->
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/lbChooser_defense"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -379,7 +379,7 @@
                                     app:flw_inputWidgetTextSize="16sp"/>
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/cbChooser_defense"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -388,7 +388,7 @@
                                     app:flw_floatOnFocus="true"
                                     app:flw_inputWidgetTextSize="16sp"/>
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/fsChooser_defense"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -398,7 +398,7 @@
                                     app:flw_inputWidgetTextSize="16sp"/>
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/sslbChooser_defense"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -431,7 +431,7 @@
                                 android:orientation="vertical">
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/lbChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -441,7 +441,7 @@
                                     app:flw_inputWidgetTextSize="16sp"/>
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/cbChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -450,7 +450,7 @@
                                     app:flw_floatOnFocus="true"
                                     app:flw_inputWidgetTextSize="16sp"/>
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/fsChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -460,7 +460,7 @@
                                     app:flw_inputWidgetTextSize="16sp"/>
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/sslbChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -479,12 +479,12 @@
 
                 </android.support.v7.widget.CardView>
 
-                <!--Special teams section-->
+                <!--Special teamDivisionId section-->
                 <TextView android:layout_height="wrap_content"
                     android:id="@+id/teams_txt"
                     android:background="@android:color/transparent"
                     android:layout_width="match_parent"
-                    android:text="Special teams"
+                    android:text="Special teamDivisionId"
                     android:textAllCaps="true"
                     android:layout_below="@+id/defense_card_view"
                     android:textStyle="bold|italic"
@@ -545,7 +545,7 @@
                                 <!--/>-->
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/prlbChooser"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -556,7 +556,7 @@
 
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/krlbChooser"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -567,7 +567,7 @@
 
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/pChooser"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -578,7 +578,7 @@
 
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/kChooser"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -607,7 +607,7 @@
                                 android:padding="10dp"
                                 android:orientation="vertical">
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/prlbChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -618,7 +618,7 @@
 
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/krlbChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -629,7 +629,7 @@
 
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/pChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -640,7 +640,7 @@
 
 
 
-                                <com.horcu.apps.maura.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
+                                <com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser
                                     android:id="@+id/kChooser_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"

@@ -1,1 +1,8 @@
-include ':sample', ':lib' //, ':PlayerWidgetlibrary'//, ':stickyHeaderlib'
+include ':sample',
+        ':lib',
+        ':library',
+        ':TextDrawableSample',
+        ':android-iconify-weathericons',
+        ':android-iconify-simplelineicons',
+        ':android-iconify'
+        //, ':PlayerWidgetlibrary'//, ':stickyHeaderlib'

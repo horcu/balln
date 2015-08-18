@@ -9,6 +9,7 @@
     <color name="accent_dark">#AD1457</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="textcolor">#44000000</color>
     <color name="matchup_edit">#fafafa</color>
     <color name="main_bg_color">#e8eaf6</color>
 </resources>
