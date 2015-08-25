@@ -20,6 +20,7 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ModelContainer;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -35,14 +36,14 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 @ModelContainer
 @Table(databaseName = horcuDatabase.NAME)
-public class Conference implements Parcelable
+public class Conference extends BaseModel implements Parcelable
 {
     public Conference(){}
 
     @Column
     @PrimaryKey(autoincrement = false)
     @JsonProperty("id")
-    private String id;
+    public String id;
 
     @Column
     @JsonProperty("name")
@@ -51,6 +52,7 @@ public class Conference implements Parcelable
     @Column
     @JsonProperty("conferenceDivisionId")
     private Long conferenceDivisionId ;
+
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -71,8 +73,7 @@ public class Conference implements Parcelable
             return (new Conference[size]);
         }
 
-    }
-    ;
+    };
 
     /**
      * 
@@ -132,11 +133,6 @@ public class Conference implements Parcelable
     @JsonProperty("conferenceDivisionId")
     public void setConferenceDivisionId(Long conferenceDivisionId) {
         this.conferenceDivisionId = conferenceDivisionId;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 
     @JsonAnyGetter

@@ -2,24 +2,34 @@ package com.horcu.apps.balln.ui.fragments;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ViewAnimator;
 
 import com.horcu.apps.balln.R;
 import com.horcu.apps.balln.models.game.AwayTeam;
 import com.horcu.apps.balln.models.game.Game;
 import com.horcu.apps.balln.models.game.HomeTeam;
+import com.horcu.apps.balln.models.game.Offense;
 import com.horcu.apps.balln.models.game.Player;
 
+import com.horcu.apps.balln.models.game.PlayerPosition;
+import com.horcu.apps.balln.models.game.Position;
+import com.horcu.apps.balln.models.game.TeamColors;
 import com.horcu.apps.balln.ui.activities.PlayerChooserActivity;
 import com.horcu.apps.balln.utilities.TeamHelmets;
 import com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser;
@@ -28,11 +38,18 @@ import com.joanzapata.iconify.fonts.SimpleLineIconsIcons;
 import com.raizlabs.android.dbflow.sql.builder.Condition;
 import com.raizlabs.android.dbflow.sql.language.Select;
 
+import org.angmarch.views.NiceSpinner;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class GameActivityFragment extends Fragment implements FloatingLabelItemChooser.OnItemChooserEventListener<Player>{
+public class GameActivityFragment extends Fragment {
 
     public GameActivityFragment() {
     }
@@ -50,237 +67,195 @@ public class GameActivityFragment extends Fragment implements FloatingLabelItemC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        ActionBar bar = getActivity().getActionBar();
-        if(bar != null) {
-            bar.addTab(bar.newTab()
-                    .setIcon(new IconDrawable(getActivity(), SimpleLineIconsIcons.icon_pin)
-                            .colorRes(Color.WHITE)
-                            .actionBarSize())
-                    .setText("pinned"));
-
-            bar.addTab(bar.newTab()
-                    .setIcon(new IconDrawable(getActivity(), SimpleLineIconsIcons.icon_notebook)
-                            .colorRes(Color.WHITE)
-                            .actionBarSize())
-                    .setText("week"));
-
-            bar.addTab(bar.newTab()
-                    .setIcon(new IconDrawable(getActivity(), SimpleLineIconsIcons.icon_list)
-                            .colorRes(Color.WHITE)
-                            .actionBarSize())
-                    .setText("live"));
-        }
-
-
-        Intent intent = getActivity().getIntent();
-        final Game game = intent.getParcelableExtra("game");
-        Long ateamId = game.getAwayTeamId();
-        Long hteamId = game.getAwayTeamId();
-        String awayLogo = new Select().from(AwayTeam.class).where(Condition.column("id").eq(ateamId)).querySingle().getLogo();
-        String homeLogo = new Select().from(HomeTeam.class).where(Condition.column("id").eq(hteamId)).querySingle().getLogo();
-        Drawable d =  getActivity().getResources().getDrawable(TeamHelmets.getHelmet(awayLogo));
-        Drawable d1 =  getActivity().getResources().getDrawable(TeamHelmets.getHelmet(homeLogo));
-
         View root = inflater.inflate(R.layout.fragment_game, container, false);
+        try {
+            Intent intent = getActivity().getIntent();
+            final Game game = intent.getParcelableExtra("game");
+            Long ateamId = game.getAwayTeamId();
+            Long hteamId = game.getHomeTeamId();
 
-        ImageView homeTeamImage = (ImageView)root.findViewById(R.id.home_image);
-        homeTeamImage.setImageDrawable(d1);
-        ImageView awayTeamImage = (ImageView)root.findViewById(R.id.away_image);
-        awayTeamImage.setImageDrawable(d);
+            AwayTeam ateam = new Select().from(AwayTeam.class).where(Condition.column("id").eq(ateamId)).querySingle();
+            Offense ateamOffense = new Select().from(Offense.class).where(Condition.column("id").eq(ateam.getOffenseId())).querySingle();
+            String ateamPlayerPositionId = ateamOffense.getPlayerPositionId();
+            List<PlayerPosition> ateamPlayerPositions = new Select().from(PlayerPosition.class).where(Condition.column("playerPositionId").eq(ateamPlayerPositionId)).queryList();
 
-        // Choosers
+            HomeTeam hteam = new Select().from(HomeTeam.class).where(Condition.column("id").eq(hteamId)).querySingle();
+            Offense hteamOffense = new Select().from(Offense.class).where(Condition.column("id").eq(hteam.getOffenseId())).querySingle();
+            String hteamPlayerPositionId = hteamOffense.getPlayerPositionId();
+            List<PlayerPosition> hteamPlayerPositions = new Select().from(PlayerPosition.class).where(Condition.column("playerPositionId").eq(hteamPlayerPositionId)).queryList();
 
-        //offense
-        setUpChoosers(game, root);
+            String awayLogo = ateam.getLogo();
+            String homeLogo = hteam.getLogo();
+
+            Drawable d =  getActivity().getResources().getDrawable(TeamHelmets.getHelmet(awayLogo));
+            Drawable d1 =  getActivity().getResources().getDrawable(TeamHelmets.getHelmet(homeLogo));
 
 
+            final ViewAnimator viewAnimator = (ViewAnimator)root.findViewById(R.id.mathups_animator);
 
-        LinearLayout awayDefense = (LinearLayout)root.findViewById(R.id.players_away_defense);
-        LinearLayout awayTeams = (LinearLayout)root.findViewById(R.id.players_away);
+            final View awayBar = root.findViewById(R.id.top_bar_spacer_away);
+            TeamColors tcol1 = new Select().from(TeamColors.class).where(Condition.column("id").eq(ateam.getTeamColorsId())).querySingle();
+            TeamColors tcol2 = new Select().from(TeamColors.class).where(Condition.column("id").eq(hteam.getTeamColorsId())).querySingle();
 
-        playerChooser = (com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser<Player>) root.findViewById(R.id.qbChooser_offense);
-        playerChooser.setItemChooserListener(this);
+            getActivity().getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(tcol1.getPrimaryColor())));
 
-        //defense
+            final String awayColor = tcol1.getPrimaryColor();
+            final View homeBar = root.findViewById(R.id.top_bar_spacer_away);
+            final String homeColor = tcol2.getPrimaryColor();
+            homeBar.setBackgroundColor(Color.parseColor(String.valueOf(awayColor)));
 
-              FloatingLabelItemChooser<Player> player = (FloatingLabelItemChooser < Player >)
-                root.findViewById(R.id.players_away_offense)
-                .findViewById(R.id.qbChooser_offense);
+            //get images and set click listeners
+            final ImageView homeTeamImage = (ImageView)root.findViewById(R.id.home_image);
+            final  ImageView awayTeamImage = (ImageView)root.findViewById(R.id.away_image);
 
-             player.setWidgetListener(new FloatingLabelItemChooser.OnWidgetEventListener<Player>() {
+            homeTeamImage.setImageDrawable(d1);
+            homeTeamImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                 viewAnimator.setDisplayedChild(1);
+                    homeBar.setBackgroundColor(Color.parseColor(String.valueOf(homeColor)));
+                    getActivity().getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(homeColor)));
 
-                    @Override
-                    public void onShowItemChooser(FloatingLabelItemChooser<Player> source) {
-                        Intent intent = PlayerChooserActivity.newIntent(getActivity());
-                        intent.putExtra("game", game);
-                        intent.putExtra("side", 0);
-                        intent.putExtra("position", 8);
+                }
+            });
 
-                        startActivityForResult(intent, REQUEST_CHOOSE_PLAYER);
-                    }
-                });
-        //teams
+            awayTeamImage.setImageDrawable(d);
+            awayTeamImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewAnimator.setDisplayedChild(0);
+                    homeBar.setBackgroundColor(Color.parseColor(String.valueOf(awayColor)));
+                    getActivity().getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(awayColor)));
 
+                }
+            });
+
+            //set up the awayTeam spinners
+            NiceSpinner qbSpinnerAway = (NiceSpinner)root.findViewById(R.id.away_qb_spinner);
+           // qbSpinnerAway.setTextColor(ColorStateList.createFromXml());
+            qbSpinnerAway.setTextColor(Color.parseColor(tcol1.getSecondaryColor()));
+
+            NiceSpinner rbSpinnerAway = (NiceSpinner)root.findViewById(R.id.away_rb_spinner);
+            NiceSpinner wrSpinnerAway = (NiceSpinner)root.findViewById(R.id.away_wr_spinner);
+            NiceSpinner teSpinnerAway = (NiceSpinner)root.findViewById(R.id.away_te_spinner);
+
+            //set up the home team spinners
+            NiceSpinner qbSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_qb_spinner);
+            qbSpinnerHome.setTextColor(Color.parseColor(tcol1.getSecondaryColor()));
+            NiceSpinner rbSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_rb_spinner);
+            NiceSpinner wrSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_wr_spinner);
+            NiceSpinner teSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_te_spinner);
+
+            //get position ids for all offensive skilled positions
+            Long QbPosId = getPositionByName("QB").getPositionId();
+            Long RbPosId = getPositionByName("RB").getPositionId();
+            Long WrPosId = getPositionByName("WR").getPositionId();
+            Long TePosId = getPositionByName("TE").getPositionId();
+
+            //lists of away players
+            List<Player> AwayQuarterbacks = new ArrayList<>();
+            List<Player> AwayRunningBacks = new ArrayList<>();
+            List<Player> AwayWideReceivers = new ArrayList<>();
+            List<Player> AwayTightEnds = new ArrayList<>();
+
+
+            //lists of home players
+            List<Player> HomeQuarterbacks = new ArrayList<>();
+            List<Player> HomeRunningBacks = new ArrayList<>();
+            List<Player> HomeWideReceivers = new ArrayList<>();
+            List<Player> HomeTightEnds = new ArrayList<>();
+
+            //Away Team
+            for(int i =0 ; i< ateamPlayerPositions.size(); i++)
+            {
+
+                PlayerPosition ppos = ateamPlayerPositions.get(i);
+                Long pposId = ppos.getPositionId();
+                Player currentPlayer = new Select().from(Player.class).where(Condition.column("id").eq(ppos.getPlayerId())).querySingle();
+                if (pposId.equals(QbPosId))
+                {
+                    AwayQuarterbacks.add(currentPlayer);
+                }
+                else if (pposId.equals(RbPosId))
+                {
+                    AwayRunningBacks.add(currentPlayer);
+                }
+                else if(pposId.equals(WrPosId))
+                {
+                    AwayWideReceivers.add(currentPlayer);
+                }
+                else if (pposId.equals(TePosId))
+                {
+                    AwayTightEnds.add(currentPlayer);
+                }
+            }
+            qbSpinnerAway.attachDataSource(getNames(AwayQuarterbacks));
+            qbSpinnerAway.addOnItemClickListener(playerChooserClickListener());
+
+            rbSpinnerAway.attachDataSource(getNames(AwayRunningBacks));
+            wrSpinnerAway.attachDataSource(getNames(AwayWideReceivers));
+            teSpinnerAway.attachDataSource(getNames(AwayTightEnds));
+
+            //Home Team
+            for(int i =0 ; i< hteamPlayerPositions.size(); i++)
+            {
+
+                PlayerPosition ppos = hteamPlayerPositions.get(i);
+                Long pposId = ppos.getPositionId();
+                Player currentPlayer = new Select().from(Player.class).where(Condition.column("id").eq(ppos.getPlayerId())).querySingle();
+                if (pposId.equals(QbPosId))
+                {
+                   HomeQuarterbacks.add(currentPlayer);
+                }
+                else if (pposId.equals(RbPosId))
+                {
+                    HomeRunningBacks.add(currentPlayer);
+                }
+                else if(pposId.equals(WrPosId))
+                {
+                    HomeWideReceivers.add(currentPlayer);
+                }
+                else if (pposId.equals(TePosId))
+                {
+                   HomeTightEnds.add(currentPlayer);
+                }
+            }
+            qbSpinnerHome.attachDataSource(getNames(HomeQuarterbacks));
+            rbSpinnerHome.attachDataSource(getNames(HomeRunningBacks));
+            wrSpinnerHome.attachDataSource(getNames(HomeWideReceivers));
+            teSpinnerHome.attachDataSource(getNames(HomeTightEnds));
+
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
         return root;
     }
 
-    private void setUpChoosers(final Game game, View root) {
-      //Away
-
-        try {
-            for(int side = 0; side < 3; side ++){ // three sides of the ball
-
-                LinearLayout[] vs = new LinearLayout[3];
-                vs[0] = (LinearLayout) root.findViewById(R.id.players_away_offense);
-                vs[1] = (LinearLayout) root.findViewById(R.id.players_away_defense);
-                vs[2] = (LinearLayout) root.findViewById(R.id.players_away_teams);;
-
-                Integer position;
-
-                Integer count = vs[side].getChildCount();
-
-                for (int i = 0; i < count; i++) {
-                    position = setArrayQueryPosition(i, side);
-                    FloatingLabelItemChooser<Player> v = (FloatingLabelItemChooser<Player>) vs[side].getChildAt(i);
-
-                    v.setItemChooserListener(this);
-                    final Integer finalPosition = position;
-                    final int finalSide = side;
-                    v.setWidgetListener(new FloatingLabelItemChooser.OnWidgetEventListener<Player>() {
-
-                        @Override
-                        public void onShowItemChooser(FloatingLabelItemChooser<Player> source) {
-                            Intent intent = PlayerChooserActivity.newIntent(getActivity());
-                            intent.putExtra("game", game);
-                            intent.putExtra("side", finalSide);
-                            intent.putExtra("position", finalPosition);
-
-                            startActivityForResult(intent, REQUEST_CHOOSE_PLAYER);
-                        }
-                    });
-                }
-            }
-            //home
-
-            for(int side = 0; side < 3; side ++){ // three sides of the ball
-
-                LinearLayout[] vs = new LinearLayout[3];
-                vs[0] = (LinearLayout) root.findViewById(R.id.players_home_offense);;
-                vs[1] = (LinearLayout) root.findViewById(R.id.players_home_defense);
-                vs[2] = (LinearLayout) root.findViewById(R.id.players_home_teams);;
-
-                Integer position;
-
-                Integer count = vs[side].getChildCount();
-
-                for (int i = 0; i < count; i++) {
-                    position = setArrayQueryPosition(i, side);
-                    FloatingLabelItemChooser<Player> v = (FloatingLabelItemChooser<Player>) vs[side].getChildAt(i);
-
-                    v.setItemChooserListener(this);
-                    final Integer finalPosition = position;
-                    final int finalSide = side;
-                    v.setWidgetListener(new FloatingLabelItemChooser.OnWidgetEventListener<Player>() {
-
-                        @Override
-                        public void onShowItemChooser(FloatingLabelItemChooser<Player> source) {
-                            Intent intent = PlayerChooserActivity.newIntent(getActivity());
-                            intent.putExtra("game", game);
-                            intent.putExtra("side", finalSide);
-                            intent.putExtra("position", finalPosition);
-
-                            startActivityForResult(intent, REQUEST_CHOOSE_PLAYER);
-                        }
-                    });
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @NonNull
-    private Integer setArrayQueryPosition(int index, Integer type) {
-        Integer position = 0;
+    private AdapterView.OnItemClickListener playerChooserClickListener() {
+        return new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        switch (type)
-        {
-            case 0: // offense
-            {
-                if(index ==0) //qb
-                {
-                    position = 8;
-                    return position;
-                }else if(index == 1) //rb
-                {
-                    position = 5;
-                    return position;
-                }
-                else if (index ==2) // wr
-                {
-                    position = 6;
-                    return position;
-                }
-                else // te
-                {
-                    position = 9;
-                    return position;
-                }
             }
-            case 1: //defense
-            {
-                if(index ==0) //lb
-                {
-                    position = 0;
-                    return position;
-                }else if(index == 1) //cb
-                {
-                    position = 5;
-                    return position;
-                }
-                else if (index ==2) // fs
-                {
-                    position = 2;
-                    return position;
-                }
-                else // ss
-                {
-                    position = 1;
-                    return position;
-                }
-            }
-            case 2: //teams
-            {
-                if(index ==0) //pr
-                {
-                    position = 5;
-                    return position;
-                }else if(index == 1) //kr
-                {
-                    position = 0;
-                    return position;
-                }
-                else if (index ==2) // p
-                {
-                    position = 3;
-                    return position;
-                }
-                else // k
-                {
-                    position = 0;
-                    return position;
-                }
-            }
+        };
+    }
+
+    private Position getPositionByName(String name) {
+        return new Select().from(Position.class).where(Condition.column("name").eq(name)).querySingle();
+    }
+
+    private LinkedList<String> getNames(List<Player> players) {
+
+       java.util.List<String> names = new ArrayList<>();
+        for (Player player: players
+                ) {
+            names.add(player.getName());
         }
-
-        return position;
+        return  new LinkedList<>(names);
     }
 
-    @Override
-    public void onSelectionChanged(FloatingLabelItemChooser<Player> floatingLabelItemChooser, Player player) {
 
-    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CHOOSE_PLAYER) {

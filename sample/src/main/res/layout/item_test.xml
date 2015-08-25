@@ -3,36 +3,39 @@
 
     <data>
         <variable name="game" type="com.horcu.apps.balln.models.game.Game"/>
-        <variable name="offenseId" type="com.horcu.apps.balln.models.game.Offense"/>
-        <variable name="defenseId" type="com.horcu.apps.balln.models.game.Defense"/>
-        <variable name="specialTeamsId" type="com.horcu.apps.balln.models.game.SpecialTeams"/>
         <variable name="position" type="com.horcu.apps.balln.models.game.Position"/>
-        <variable name="player" type="com.horcu.apps.balln.models.game.Player"/>
+        <variable name="awayTeam" type="com.horcu.apps.balln.models.game.AwayTeam"/>
+        <variable name="homeTeam" type="com.horcu.apps.balln.models.game.HomeTeam"/>
 
     </data>
 
-<RelativeLayout
-    android:id="@+id/players_main"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ViewAnimator
-        android:id="@+id/mathups_animator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/playersMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg"
+        android:layout_marginBottom="5dp"
+               android:orientation="vertical">
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card1"
+            android:layout_gravity="top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            card_view:cardElevation="2dp"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="3dp">
+
+        <FrameLayout
             android:id="@+id/card_view"
             android:layout_gravity="top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:layout_marginTop="10dp"
-            card_view:cardElevation="2dp"
-            card_view:cardBackgroundColor="#ffffff"
-            card_view:cardUseCompatPadding="true"
-            card_view:cardCornerRadius="3dp">
+            android:layout_marginTop="5dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -46,64 +49,49 @@
                     android:layout_gravity="center">
 
                     <com.joanzapata.iconify.widget.IconTextView
-                        android:id="@+id/refresh"
+                        android:id="@+id/heart"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:text="{icon-pin}"
+                        android:text="{icon-star}"
                         android:shadowColor="#22000000"
-                        android:shadowDx="3"
-                        android:shadowDy="3"
                         android:shadowRadius="1"
                         android:textSize="25sp"
+                        android:layout_weight="1"
                         android:textColor="@color/textcolor"
                         android:layout_gravity="center"
-                        android:layout_margin="6dp"
+                        android:layout_margin="10dp"
                         />
 
                     <Space
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"/>
-
-                    <Space
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="1px"
                         android:layout_weight="10"/>
 
 
                     <com.joanzapata.iconify.widget.IconTextView
                         android:id="@+id/edit_matchup"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:text="{icon-pencil}"
                         android:shadowColor="#22000000"
-                        android:shadowDx="3"
-                        android:shadowDy="3"
                         android:shadowRadius="1"
+                        android:layout_weight="1"
+                        android:gravity="end"
                         android:textSize="25sp"
                         android:textColor="@color/textcolor"
                         android:layout_gravity="center"
-                        android:layout_margin="6dp"
+                        android:layout_margin="10dp"
                         />
 
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/spacer_top"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/players_top_bar"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="#89dddddd"/>
 
                 <LinearLayout
                     android:id="@+id/players_top"
-                    android:layout_below="@+id/spacer_top"
+                    android:layout_below="@+id/players_top_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="10dp"
                     android:visibility="visible"
                     android:orientation="horizontal">
 
@@ -112,19 +100,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="16dp"
+                        android:layout_marginStart="5dip"
+                        android:paddingTop="0dp"
                         android:orientation="vertical">
 
-
+                        <!--<ImageView-->
+                            <!--android:layout_width="50dp"-->
+                            <!--android:layout_height="50dp"-->
+                            <!--android:scaleType="centerInside"-->
+                            <!--android:src="@drawable/joe_flacco"/>-->
 
                         <TextView
+                            android:id="@+id/quarterback"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
-
+                            android:textSize="15sp"
+                            android:textStyle="bold"
                             android:textAlignment="textStart"
                             android:textColor="#999999"
-                            android:text="Quarterback"/>
+                            android:text="Joe Flacco"/>
 
 
                         <Space
@@ -132,154 +126,138 @@
                             android:layout_height="@dimen/position_spacing"
                             />
 
+
+
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+
                         <TextView
+                            android:id="@+id/wide_receiver_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="14sp"
                             android:background="#ffffff"
                             android:textAlignment="textStart"
                             android:textColor="#999999"
-                            android:text="Wide reciever"/>
+                            android:text="Marlon Brown"/>
+
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:id="@+id/wide_receiver_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:background="#ffffff"
+                            android:textAlignment="textStart"
+                            android:textColor="#999999"
+                            android:text="Michael Campanero"/>
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
 
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:id="@+id/running_back_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:background="#ffffff"
+                            android:textAlignment="textStart"
+                            android:textColor="#999999"
+                            android:text="Justin Forsett"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:id="@+id/running_back_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:background="#ffffff"
+                            android:textAlignment="textStart"
+                            android:textColor="#999999"
+                            android:text="Lorenzo Talliafero"/>
+
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
 
                         <View android:layout_height="1dp"
                             android:background="#dddddd"
                             android:layout_width="wrap_content"/>
-
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/position_spacing"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14dip"
-                            android:background="#ffffff"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Strong safety"/>
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/position_spacing"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14dip"
-                            android:background="#ffffff"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:layout_marginBottom="10dip"
-                            android:text="Rush Line backer"/>
-
-                        <View android:layout_height="1dp"
-                            android:background="#dddddd"
-                            android:layout_width="wrap_content"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14dip"
-                            android:background="#ffffff"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Kick returner"/>
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="94dp"
                         android:orientation="vertical"
                         android:padding="10dp"
-                        android:background="@android:color/transparent">
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="10dp"
-                            />
-
-                        <ImageView
-                            android:id="@+id/testImage"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:text="QB"/>
-
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/position_spacing"
-                            />
-
-                        <ImageView
-                            android:id="@+id/testImage2"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:text="WR"/>
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:text="SS"/>
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/position_spacing"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:text="CB"/>
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="15dp"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:text="SS"/>
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="15dp"
-                            />
+                        android:background="@android:color/white">
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/players_home2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="55dp"
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@android:color/white">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/home_players_away2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="16dp"
-
-                        android:paddingTop="5dip"
+                        android:layout_marginEnd="5dip"
+                        android:paddingTop="0dp"
                         android:orientation="vertical">
 
+                        <!--<ImageView-->
+                            <!--android:layout_width="50dp"-->
+                            <!--android:layout_height="50dp"-->
+                            <!--android:layout_gravity="end"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/carson"/>-->
+
                         <TextView
+                            android:id="@+id/home_quarterback"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
                             android:textAlignment="textEnd"
                             android:layout_gravity="end"
                             android:textColor="#999999"
-                            android:text="Quarterback"/>
+                            android:text="Carson Palmer"/>
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
 
 
                         <Space
@@ -288,148 +266,86 @@
                             />
 
                         <TextView
+                            android:id="@+id/home_wide_receiver_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="14sp"
                             android:background="#ffffff"
                             android:textAlignment="textEnd"
                             android:layout_gravity="end"
                             android:textColor="#999999"
-                            android:text="Wide reciever"/>
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/position_spacing"
-                            />
+                            android:text="Larry Fitzgerald"/>
 
-
-                        <View android:layout_height="1dp"
-                            android:background="#dddddd"
-                            android:layout_width="wrap_content"/>
-
-
-                        <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:textSize="14dip"-->
-
-                            <!--android:textAlignment="textEnd"-->
-                            <!--android:layout_gravity="end"-->
-
-                            <!--android:textColor="#999999"-->
-                            <!--android:text="Line backer"/>-->
-
-                        <!--<Space-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="@dimen/position_spacing"-->
-                            <!--/>-->
-
-                        <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:textSize="14dip"-->
-                            <!--android:background="#ffffff"-->
-                            <!--android:textAlignment="textEnd"-->
-                            <!--android:layout_gravity="end"-->
-                            <!--android:textColor="#999999"-->
-                            <!--android:text="Corner back"/>-->
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
                         <TextView
+                            android:id="@+id/home_wide_receiver_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="14sp"
                             android:background="#ffffff"
                             android:textAlignment="textEnd"
                             android:layout_gravity="end"
                             android:textColor="#999999"
-                            android:text="Strong safety"/>
+                            android:text="Malcolm Floyd"/>
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
                         <TextView
+                            android:id="@+id/home_running_back_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="14sp"
                             android:background="#ffffff"
                             android:textAlignment="textEnd"
                             android:layout_gravity="end"
                             android:textColor="#999999"
-                            android:layout_marginBottom="10dip"
-                            android:text="Rush Line backer"/>
+                            android:text="Chris Johnson"/>
 
-                        <View android:layout_height="1dp"
-                            android:background="#dddddd"
-                            android:layout_width="wrap_content"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14dip"
-                            android:background="#ffffff"
-                            android:textAlignment="textEnd"
-                            android:layout_gravity="end"
-                            android:textColor="#999999"
-                            android:text="Kick returner"/>
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
-                        <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:textSize="14dip"-->
-                            <!--android:background="#ffffff"-->
-                            <!--android:textAlignment="textEnd"-->
-                            <!--android:layout_gravity="end"-->
-                            <!--android:textColor="#999999"-->
-                            <!--android:text="Punt returner"/>-->
+                        <TextView
+                            android:id="@+id/home_running_back_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:background="#ffffff"
+                            android:textAlignment="textEnd"
+                            android:layout_gravity="end"
+                            android:textColor="#999999"
+                            android:text="Lorenzo Talliafero"/>
 
-                        <!--<Space-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="@dimen/position_spacing"-->
-                            <!--/>-->
-
-                        <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:textSize="14dip"-->
-                            <!--android:background="#ffffff"-->
-                            <!--android:textAlignment="textEnd"-->
-                            <!--android:layout_gravity="end"-->
-                            <!--android:textColor="#999999"-->
-                            <!--android:text="Punter"/>-->
-
-                        <!--<Space-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="@dimen/position_spacing"-->
-                            <!--/>-->
-
-                        <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:textSize="14dip"-->
-                            <!--android:background="#ffffff"-->
-                            <!--android:textAlignment="textEnd"-->
-                            <!--android:layout_gravity="end"-->
-                            <!--android:textColor="#999999"-->
-                            <!--android:text="Place kicker"/>-->
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/players_middle"
                     android:layout_below="@+id/players_top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:visibility="visible"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -437,128 +353,84 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="16dp"
-
+                        android:layout_marginStart="5dip"
                         android:orientation="vertical">
 
-                        <TextView
+                        <Space
                             android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            >
 
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Linebacker"/>
+                            <TextView
+                                android:id="@+id/tight_end_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textAlignment="textStart" android:textColor="#999999"
+                                android:text="Dennis Pitta"/>
 
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="@dimen/position_spacing"-->
-                        <!--/>-->
 
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-                        <!--android:background="#ffffff"-->
-                        <!--android:textAlignment="textStart"-->
-                        <!--android:textColor="#999999"-->
-                        <!--android:text="Running back"/>-->
+                        </FrameLayout>
+
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
                         <TextView
+                            android:id="@+id/away_tight_end_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="14sp"
                             android:background="#ffffff"
                             android:textAlignment="textStart"
                             android:textColor="#999999"
-                            android:text="Free safety"/>
+                            android:text="Crocket Gillmore"/>
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-                        <!--android:background="#ffffff"-->
-                        <!--android:textAlignment="textStart"-->
-                        <!--android:textColor="#999999"-->
-                        <!--android:layout_marginBottom="10dip"-->
-                        <!--android:text="Tight end"/>-->
-
-                        <View android:layout_height="1dp"
-                            android:background="#dddddd"
-                            android:layout_width="wrap_content"/>
-
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-
-                        <!--android:textAlignment="textStart"-->
-
-                        <!--android:textColor="#999999"-->
-                        <!--android:text="Line backer"/>-->
-
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="@dimen/position_spacing"-->
-                        <!--/>-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-                        <!--android:background="#ffffff"-->
-                        <!--android:textAlignment="textStart"-->
-                        <!--android:textColor="#999999"-->
-                        <!--android:text="Corner back"/>-->
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
                         <TextView
+                            android:id="@+id/linebacker_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="14sp"
                             android:background="#ffffff"
                             android:textAlignment="textStart"
                             android:textColor="#999999"
-                            android:text="Fullback"/>
+                            android:text="Cj Mosley"/>
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
                         <TextView
+                            android:id="@+id/dt_de"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="14sp"
                             android:background="#ffffff"
                             android:textAlignment="textStart"
                             android:textColor="#999999"
                             android:layout_marginBottom="10dip"
-                            android:text="Sam Linebacker"/>
+                            android:text="Terrell Suggs"/>
 
-                        <View android:layout_height="1dp"
-                            android:background="#dddddd"
-                            android:layout_width="wrap_content"/>
 
-                        <TextView
+                        <Space
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14dip"
-                            android:background="#ffffff"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Punter"/>
+                            android:layout_height="10dp"
+                            />
 
                     </LinearLayout>
 
@@ -569,311 +441,92 @@
                         android:padding="10dp"
                         android:background="@android:color/transparent">
 
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="10dp"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:text="QB"/>
 
 
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/position_spacing"
-                            />
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:textSize="12sp"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="RB"/>-->
-
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="@dimen/position_spacing"-->
-                        <!--/>-->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:text="WR"/>
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            />
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:textSize="12sp"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="TE"/>-->
-
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="25dp"-->
-                        <!--/>-->
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:text="SS"/>
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/position_spacing"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:text="CB"/>
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="15dp"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"
-                            android:text="SS"/>
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="15dp"
-                            />
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:textSize="12sp"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="RLB"/>-->
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="15dp"-->
-                        <!--/>-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:textSize="12sp"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="KR"/>-->
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="@dimen/position_spacing"-->
-                        <!--/>-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:textSize="12sp"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="PR"/>-->
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="@dimen/position_spacing"-->
-                        <!--/>-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:textSize="12sp"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="P"/>-->
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="@dimen/position_spacing"-->
-                        <!--/>-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:textSize="12sp"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="PK"/>-->
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/players_home"
+                        android:id="@+id/home_players_away3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:padding="16dp"
-
-                        android:paddingTop="5dip"
+                        android:layout_marginEnd="5dip"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14dip"
-                            android:textAlignment="textEnd"
-                            android:layout_gravity="end"
-                            android:textColor="#999999"
-                            android:text="Quarterback"/>
-
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="@dimen/position_spacing"-->
-                        <!--/>-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-                        <!--android:background="#ffffff"-->
-                        <!--android:textAlignment="textEnd"-->
-                        <!--android:layout_gravity="end"-->
-                        <!--android:textColor="#999999"-->
-                        <!--android:text="Running back"/>-->
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
                         <TextView
+                            android:id="@+id/home_tight_end_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="14sp"
+                            android:textAlignment="textEnd"
+                            android:layout_gravity="end"
+                            android:textColor="#999999"
+                            android:text="Dennis Pitta"/>
+
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/position_spacing"
+                            />
+
+                        <TextView
+                            android:id="@+id/home_away_tight_end_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
                             android:background="#ffffff"
                             android:textAlignment="textEnd"
                             android:layout_gravity="end"
                             android:textColor="#999999"
-                            android:text="Wide reciever"/>
+                            android:text="Crocket Gillmore"/>
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-                        <!--android:background="#ffffff"-->
-                        <!--android:textAlignment="textEnd"-->
-                        <!--android:layout_gravity="end"-->
-                        <!--android:textColor="#999999"-->
-                        <!--android:layout_marginBottom="10dip"-->
-                        <!--android:text="Tight end"/>-->
-
-                        <View android:layout_height="1dp"
-                            android:background="#dddddd"
-                            android:layout_width="wrap_content"/>
-
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-
-                        <!--android:textAlignment="textEnd"-->
-                        <!--android:layout_gravity="end"-->
-
-                        <!--android:textColor="#999999"-->
-                        <!--android:text="Line backer"/>-->
-
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="@dimen/position_spacing"-->
-                        <!--/>-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-                        <!--android:background="#ffffff"-->
-                        <!--android:textAlignment="textEnd"-->
-                        <!--android:layout_gravity="end"-->
-                        <!--android:textColor="#999999"-->
-                        <!--android:text="Corner back"/>-->
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
                         <TextView
+                            android:id="@+id/home_linebacker_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="14sp"
                             android:background="#ffffff"
                             android:textAlignment="textEnd"
                             android:layout_gravity="end"
                             android:textColor="#999999"
-                            android:text="Strong safety"/>
+                            android:text="Cj Mosley"/>
                         <Space
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/position_spacing"
                             />
 
                         <TextView
+                            android:id="@+id/home_dt_de"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dip"
+                            android:textSize="14sp"
                             android:background="#ffffff"
                             android:textAlignment="textEnd"
                             android:layout_gravity="end"
                             android:textColor="#999999"
                             android:layout_marginBottom="10dip"
-                            android:text="Rush Line backer"/>
+                            android:text="Terrell Suggs"/>
 
-                        <View android:layout_height="1dp"
-                            android:background="#dddddd"
-                            android:layout_width="wrap_content"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14dip"
-                            android:background="#ffffff"
-                            android:textAlignment="textEnd"
-                            android:layout_gravity="end"
-                            android:textColor="#999999"
-                            android:text="Kick returner"/>
                         <Space
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/position_spacing"
+                            android:layout_height="10dp"
                             />
 
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-                        <!--android:background="#ffffff"-->
-                        <!--android:textAlignment="textEnd"-->
-                        <!--android:layout_gravity="end"-->
-                        <!--android:textColor="#999999"-->
-                        <!--android:text="Punt returner"/>-->
 
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="@dimen/position_spacing"-->
-                        <!--/>-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-                        <!--android:background="#ffffff"-->
-                        <!--android:textAlignment="textEnd"-->
-                        <!--android:layout_gravity="end"-->
-                        <!--android:textColor="#999999"-->
-                        <!--android:text="Punter"/>-->
-
-                        <!--<Space-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="@dimen/position_spacing"-->
-                        <!--/>-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textSize="14dip"-->
-                        <!--android:background="#ffffff"-->
-                        <!--android:textAlignment="textEnd"-->
-                        <!--android:layout_gravity="end"-->
-                        <!--android:textColor="#999999"-->
-                        <!--android:text="Place kicker"/>-->
 
                     </LinearLayout>
 
@@ -881,30 +534,32 @@
 
             </RelativeLayout>
 
+        </FrameLayout>
 
-        </android.support.v7.widget.CardView>
+    <LinearLayout
+        android:id="@+id/card_view_away"
+        android:layout_gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white">
 
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view_edit"
-            android:layout_gravity="top"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="10dp"
-            card_view:cardElevation="2dp"
-            card_view:cardBackgroundColor="#ffffff"
-            card_view:cardUseCompatPadding="true"
-            card_view:cardCornerRadius="3dp">
+            android:layout_gravity="center"
+            android:text="betting info"/>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="10"/>
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Testing"/>
+
+    </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
-    </ViewAnimator>
+    </LinearLayout>
 
-</RelativeLayout>
 </layout>

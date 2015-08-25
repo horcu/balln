@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">balln</string>
+    <string name="app_name">Wager</string>
     <string name="about">About</string>
     <string name="clear_cache">Clear Cache</string>
     <string name="empty_view">Nada :{</string>
@@ -8,7 +8,7 @@
     <string name="title_activity_matchup">Matchups</string>
     <string name="dummy_button">Back</string>
     <string name="dummy_content"></string>
-    <string name="title_activity_game">Major Wager</string>
+    <string name="title_activity_game">Set lineup</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_player_chooser">Player selection</string>

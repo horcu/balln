@@ -18,6 +18,7 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ModelContainer;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -33,14 +34,14 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 @ModelContainer
 @Table(databaseName = horcuDatabase.NAME)
-public class TeamDivision implements Parcelable
+public class TeamDivision extends BaseModel implements Parcelable
 {
     public TeamDivision(){}
 
     @Column
-    @PrimaryKey(autoincrement = true)
+    @PrimaryKey(autoincrement = false)
     @JsonProperty("id")
-    private Long id;
+    public String id;
 
     @Column
     @JsonProperty("teamId")
@@ -57,7 +58,7 @@ public class TeamDivision implements Parcelable
 
         public TeamDivision createFromParcel(Parcel in) {
             TeamDivision instance = new TeamDivision();
-            instance.id = ((Long) in.readValue((Long.class.getClassLoader())));
+            instance.id = ((String) in.readValue((String.class.getClassLoader())));
             instance.teamId = ((String) in.readValue((String.class.getClassLoader())));
             instance.divisionId = ((String) in.readValue((String.class.getClassLoader())));
             instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
@@ -77,7 +78,7 @@ public class TeamDivision implements Parcelable
      *     The id
      */
     @JsonProperty("id")
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -87,7 +88,7 @@ public class TeamDivision implements Parcelable
      *     The id
      */
     @JsonProperty("id")
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -129,11 +130,6 @@ public class TeamDivision implements Parcelable
     @JsonProperty("divisionId")
     public void setDivisionId(String divisionId) {
         this.divisionId = divisionId;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 
     @JsonAnyGetter

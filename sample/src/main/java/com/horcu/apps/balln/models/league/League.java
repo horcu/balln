@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.horcu.apps.balln.db.horcuDatabase;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ModelContainer;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
@@ -28,6 +29,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
+    "id",
     "name",
     "leagueConferenceId"
 })
@@ -37,6 +39,12 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class League extends BaseModel implements Parcelable
 {
     public League(){}
+
+    @JsonProperty("id")
+    @Column
+    @PrimaryKey(autoincrement = true)
+    public Long id;
+
 
     @Column
     @JsonProperty("name")
@@ -53,6 +61,7 @@ public class League extends BaseModel implements Parcelable
 
         public League createFromParcel(Parcel in) {
             League instance = new League();
+            instance.id = ((Long) in.readValue((Long.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
             instance.leagueConferenceId = ((Long) in.readValue((Long.class.getClassLoader())));
             instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
@@ -65,6 +74,26 @@ public class League extends BaseModel implements Parcelable
 
     }
     ;
+
+    /**
+     *
+     * @return
+     *     The id
+     */
+    @JsonProperty("id")
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     *
+     * @param id
+     *     The id
+     */
+    @JsonProperty("id")
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * 
@@ -106,11 +135,6 @@ public class League extends BaseModel implements Parcelable
         this.leagueConferenceId = leagueConferenceId;
     }
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
-
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -123,7 +147,7 @@ public class League extends BaseModel implements Parcelable
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(name).append(leagueConferenceId).append(additionalProperties).toHashCode();
+        return new HashCodeBuilder().append(id).append(name).append(leagueConferenceId).append(additionalProperties).toHashCode();
     }
 
     @Override
@@ -135,10 +159,11 @@ public class League extends BaseModel implements Parcelable
             return false;
         }
         League rhs = ((League) other);
-        return new EqualsBuilder().append(name, rhs.name).append(leagueConferenceId, rhs.leagueConferenceId).append(additionalProperties, rhs.additionalProperties).isEquals();
+        return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name).append(leagueConferenceId, rhs.leagueConferenceId).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
 
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(id);
         dest.writeValue(name);
         dest.writeLong(leagueConferenceId);
         dest.writeValue(additionalProperties);

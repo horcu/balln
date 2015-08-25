@@ -43,8 +43,8 @@ public class SpecialTeams extends BaseModel implements Parcelable {
     public Long id;
 
     @Column
-    @JsonProperty("playerpositionId")
-    public String playerpositionId;
+    @JsonProperty("playerPositionId")
+    public String playerPositionId;
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -83,9 +83,9 @@ public class SpecialTeams extends BaseModel implements Parcelable {
      * @return
      *     The positions
      */
-    @JsonProperty("playerpositionId")
+    @JsonProperty("playerPositionId")
     public String getPlayerPositionId() {
-        return playerpositionId;
+        return playerPositionId;
     }
 
     /**
@@ -93,9 +93,9 @@ public class SpecialTeams extends BaseModel implements Parcelable {
      * @param positions
      *     The positions
      */
-    @JsonProperty("playerpositionId")
+    @JsonProperty("playerPositionId")
     public void setPlayerPositionId(String playerPositionId) {
-        this.playerpositionId = playerpositionId;
+        this.playerPositionId = playerPositionId;
     }
 
     @JsonAnyGetter
@@ -110,7 +110,7 @@ public class SpecialTeams extends BaseModel implements Parcelable {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(id).append(playerpositionId).append(additionalProperties).toHashCode();
+        return new HashCodeBuilder().append(id).append(playerPositionId).append(additionalProperties).toHashCode();
     }
 
     @Override
@@ -122,12 +122,12 @@ public class SpecialTeams extends BaseModel implements Parcelable {
             return false;
         }
         SpecialTeams rhs = ((SpecialTeams) other);
-        return new EqualsBuilder().append(id, rhs.id).append(playerpositionId, rhs.playerpositionId).append(additionalProperties, rhs.additionalProperties).isEquals();
+        return new EqualsBuilder().append(id, rhs.id).append(playerPositionId, rhs.playerPositionId).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(id);
-        dest.writeString(playerpositionId);
+        dest.writeString(playerPositionId);
         dest.writeValue(additionalProperties);
     }
 

@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.annotation.Generated;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.horcu.apps.balln.db.horcuDatabase;
-import com.horcu.apps.balln.models.game.TeamColors;
 import com.horcu.apps.balln.models.game.Venue;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ModelContainer;
@@ -33,7 +32,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
     "name",
     "market",
     "team_colors",
-    "venue"
+    "venueId"
 })
 @ModelContainer
 @Table(databaseName = horcuDatabase.NAME)
@@ -56,12 +55,12 @@ public class Team extends BaseModel implements Parcelable
     private String market;
 
     @Column
-    @JsonProperty("team_colors")
-    private TeamColors teamColors;
+    @JsonProperty("team_colorsId")
+    private Long teamColorsId;
 
     @Column
-    @JsonProperty("venue")
-    private Venue venue;
+    @JsonProperty("venueId")
+    private String venueId;
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -73,8 +72,8 @@ public class Team extends BaseModel implements Parcelable
             instance.id = ((String) in.readValue((String.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
             instance.market = ((String) in.readValue((String.class.getClassLoader())));
-            instance.teamColors = ((TeamColors) in.readValue((TeamColors.class.getClassLoader())));
-            instance.venue = ((Venue) in.readValue((Venue.class.getClassLoader())));
+            instance.teamColorsId = ((Long) in.readValue((Long.class.getClassLoader())));
+            instance.venueId = ((String) in.readValue((String.class.getClassLoader())));
             instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
             return instance;
         }
@@ -149,46 +148,41 @@ public class Team extends BaseModel implements Parcelable
     /**
      * 
      * @return
-     *     The teamColors
+     *     The teamColorsId
      */
-    @JsonProperty("team_colors")
-    public TeamColors getTeamColors() {
-        return teamColors;
+    @JsonProperty("team_colorsId")
+    public Long getTeamColorsId() {
+        return teamColorsId;
     }
 
     /**
      * 
-     * @param teamColors
+     * @param teamColorsId
      *     The team_colors
      */
-    @JsonProperty("team_colors")
-    public void setTeamColors(TeamColors teamColors) {
-        this.teamColors = teamColors;
+    @JsonProperty("team_colorsId")
+    public void setTeamColorsId(Long teamColorsId) {
+        this.teamColorsId = teamColorsId;
     }
 
     /**
      * 
      * @return
-     *     The venue
+     *     The venueId
      */
-    @JsonProperty("venue")
-    public Venue getVenue() {
-        return venue;
+    @JsonProperty("venueId")
+    public String getVenueId() {
+        return venueId;
     }
 
     /**
      * 
-     * @param venue
-     *     The venue
+     * @param venueId
+     *     The venueId
      */
-    @JsonProperty("venue")
-    public void setVenue(Venue venue) {
-        this.venue = venue;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+    @JsonProperty("venueId")
+    public void setVenueId(String venueId) {
+        this.venueId = venueId;
     }
 
     @JsonAnyGetter
@@ -203,7 +197,7 @@ public class Team extends BaseModel implements Parcelable
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(id).append(name).append(market).append(teamColors).append(venue).append(additionalProperties).toHashCode();
+        return new HashCodeBuilder().append(id).append(name).append(market).append(teamColorsId).append(venueId).append(additionalProperties).toHashCode();
     }
 
     @Override
@@ -215,15 +209,15 @@ public class Team extends BaseModel implements Parcelable
             return false;
         }
         Team rhs = ((Team) other);
-        return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name).append(market, rhs.market).append(teamColors, rhs.teamColors).append(venue, rhs.venue).append(additionalProperties, rhs.additionalProperties).isEquals();
+        return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name).append(market, rhs.market).append(teamColorsId, rhs.teamColorsId).append(venueId, rhs.venueId).append(additionalProperties, rhs.additionalProperties).isEquals();
     }
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
         dest.writeValue(name);
         dest.writeValue(market);
-        dest.writeValue(teamColors);
-        dest.writeValue(venue);
+        dest.writeValue(teamColorsId);
+        dest.writeValue(venueId);
         dest.writeValue(additionalProperties);
     }
 

@@ -1,5 +1,6 @@
 package com.horcu.apps.balln.ui.activities;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,17 +8,16 @@ import android.view.MenuItem;
 
 import com.horcu.apps.balln.R;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
+//        getActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher);
+//        getActionBar().setHomeButtonEnabled(true);
+//        getActionBar().show();
         setContentView(R.layout.activity_game);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -42,7 +42,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 @Table(databaseName = horcuDatabase.NAME)
 public class Game extends BaseModel implements Parcelable
 {
-
     public Game(){}
 
     @Column
@@ -71,7 +70,7 @@ public class Game extends BaseModel implements Parcelable
 //            saveForeignKeyModel = true)
     private Long homeTeamId;
 
-    @Column(name = "away_teamId")
+    @Column
     @JsonProperty("away_teamId")
 //    @ForeignKey(
 //            references = {@ForeignKeyReference(columnName = "away_team",

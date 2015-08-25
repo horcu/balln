@@ -32,10 +32,9 @@ public class DoubleHeaderFragment extends BaseDecorationFragment {
     @Override
     protected void setAdapterAndDecor(RecyclerView list) {
         try {
-            final GameDayAdapter adapter = new GameDayAdapter(new View(getActivity()),  this.getActivity());
+            final GameDayAdapter adapter = new GameDayAdapter(getActivity().findViewById(android.R.id.empty),  this.getActivity());
             decor = new DoubleHeaderDecoration(adapter);
             setHasOptionsMenu(true);
-
             list.setAdapter(adapter);
             list.addItemDecoration(decor, 1);
 

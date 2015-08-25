@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.horcu.apps.balln.db.horcuDatabase;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ModelContainer;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
@@ -39,8 +40,9 @@ public class Division extends BaseModel implements Parcelable
     public Division(){}
 
     @Column
+    @PrimaryKey(autoincrement = false)
     @JsonProperty("id")
-    private String id;
+    public String id;
 
     @Column
     @JsonProperty("name")
@@ -48,7 +50,7 @@ public class Division extends BaseModel implements Parcelable
 
     @Column
     @JsonProperty("teamDivisionId")
-    private Long teamDivisionId ;
+    private String teamDivisionId ;
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -59,8 +61,7 @@ public class Division extends BaseModel implements Parcelable
             Division instance = new Division();
             instance.id = ((String) in.readValue((String.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
-            instance.teamDivisionId = ((Long) in.readValue((Long.class.getClassLoader())));
-
+            instance.teamDivisionId = ((String) in.readValue((String.class.getClassLoader())));
             instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
             return instance;
         }
@@ -118,7 +119,7 @@ public class Division extends BaseModel implements Parcelable
      *     The teamDivisionId
      */
     @JsonProperty("teamDivisionId")
-    public Long getTeamDivisionId() {
+    public String getTeamDivisionId() {
         return teamDivisionId;
     }
 
@@ -128,14 +129,10 @@ public class Division extends BaseModel implements Parcelable
      *     The teamDivisionId
      */
     @JsonProperty("teamDivisionId")
-    public void setTeamDivisionId(Long teamDivisionId) {
+    public void setTeamDivisionId(String teamDivisionId) {
         this.teamDivisionId = teamDivisionId;
     }
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
@@ -167,7 +164,7 @@ public class Division extends BaseModel implements Parcelable
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
         dest.writeValue(name);
-        dest.writeLong(teamDivisionId);
+        dest.writeString(teamDivisionId);
         dest.writeValue(additionalProperties);
     }
 

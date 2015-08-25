@@ -15,33 +15,12 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:dots="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_bg_color"
     android:orientation="vertical">
-
-    <!--<android.widget.Toolbar-->
-    <!--android:id="@+id/toolbar"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="50dp"-->
-    <!--android:background="@color/primary_dark"-->
-    <!--android:layout_marginTop="0dp"-->
-    <!--android:minHeight="?attr/actionBarSize" >-->
-
-    <!--<de.hdodenhof.circleimageview.CircleImageView-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--android:id="@+id/home_image"-->
-    <!--android:layout_width="35dp"-->
-    <!--android:layout_height="35dp"-->
-    <!--android:layout_above="@+id/text_item_home"-->
-
-    <!--app:border_width="2dp"-->
-    <!--app:border_color="#FF000000"/>-->
-
-    <!--</android.widget.Toolbar>-->
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/games"
@@ -50,12 +29,16 @@
         android:background="#e8eaf6"
        android:scrollbars="vertical" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/empty"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/empty_view"-->
-        <!--style="@style/Base.TextAppearance.AppCompat.Medium" />-->
+
+    <TextView android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
+        android:textSize="28sp"
+        android:shadowColor="#ffffff"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:text="Nada :/" />
 
 </LinearLayout>

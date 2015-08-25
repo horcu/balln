@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+          //  getActionBar().show();
         try {
             HeaderPagerAdapter adapter = new HeaderPagerAdapter(this.getSupportFragmentManager());
 

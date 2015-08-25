@@ -29,6 +29,7 @@
         <activity
             android:name="com.horcu.apps.balln.ui.activities.PlayerChooserActivity"
             android:label="@string/title_activity_player_chooser"
+            android:theme="@style/Theme.DataBinding"
             android:parentActivityName="com.horcu.apps.balln.ui.activities.GameActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -36,7 +37,6 @@
         </activity>
         <activity
             android:name="com.horcu.apps.balln.ui.activities.GameActivity"
-            android:theme="@style/Theme.DataBinding"
             android:label="@string/title_activity_game" >
         </activity>
         <activity

@@ -41,7 +41,7 @@ public LeagueConference(){}
     @Column
     @PrimaryKey(autoincrement = true)
     @JsonProperty("id")
-    private Long id;
+    public Long id;
 
     @Column
     @JsonProperty("leagueName")
@@ -130,11 +130,6 @@ public LeagueConference(){}
     @JsonProperty("ConferenceId")
     public void setConferenceId(String ConferenceId) {
         this.ConferenceId = ConferenceId;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 
     @JsonAnyGetter

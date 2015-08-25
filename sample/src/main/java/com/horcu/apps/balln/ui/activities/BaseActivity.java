@@ -11,8 +11,6 @@ public abstract class BaseActivity extends FragmentActivity
         @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
             try {
                 this.setContentView(R.layout.activity_main);
 

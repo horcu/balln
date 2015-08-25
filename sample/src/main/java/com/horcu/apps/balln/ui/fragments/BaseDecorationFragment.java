@@ -16,6 +16,8 @@
 
 package com.horcu.apps.balln.ui.fragments;
 
+import android.app.ActionBar;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,6 +29,8 @@ import android.view.ViewGroup;
 
 
 import com.horcu.apps.balln.R;
+import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.fonts.SimpleLineIconsIcons;
 
 import ca.barrenechea.widget.recyclerview.decoration.DividerDecoration;
 

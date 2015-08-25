@@ -1,5 +1,7 @@
 package com.horcu.apps.balln.utilities;
 
+import java.util.Date;
+
 /**
  * Created by hacz on 8/16/2015.
  */
@@ -13,4 +15,5 @@ public class Consts {
     public static final String NAME = "name";
     public static final String DESC = "desc";
     public static final String SPECIAL_TEAMS = "special_teams";
+    public static final Date WEEK1_DATE = new Date(2014,9,7) ;
 }

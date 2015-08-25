@@ -31,6 +31,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
     "conferenceId",
     "divisionId"
 })
+
 @ModelContainer
 @Table(databaseName = horcuDatabase.NAME)
 public class ConferenceDivision extends BaseModel implements Parcelable
@@ -40,7 +41,7 @@ public class ConferenceDivision extends BaseModel implements Parcelable
     @Column
     @PrimaryKey(autoincrement = true)
     @JsonProperty("id")
-    private Long id;
+    public Long id;
 
     @Column
     @JsonProperty("conferenceId")
@@ -129,11 +130,6 @@ public class ConferenceDivision extends BaseModel implements Parcelable
     @JsonProperty("divisionId")
     public void setDivisionId(String divisionId) {
         this.divisionId = divisionId;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 
     @JsonAnyGetter

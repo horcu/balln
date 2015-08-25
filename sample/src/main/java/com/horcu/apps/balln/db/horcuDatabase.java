@@ -8,7 +8,7 @@ import com.raizlabs.android.dbflow.annotation.Database;
 @Database(name = horcuDatabase.NAME, version = horcuDatabase.VERSION, foreignKeysSupported = true, backupEnabled = true, consistencyCheckEnabled = true)
 public class horcuDatabase {
 
-    public static final String NAME = "Ballndb_dev_beta_0019";
+    public static final String NAME = "Ballndb_staging_14";
 
     public static final int VERSION = 1;
 }

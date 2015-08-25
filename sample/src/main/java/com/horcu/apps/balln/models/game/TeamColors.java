@@ -150,11 +150,6 @@ public TeamColors(){}
         this.tertiaryColor = tertiaryColor;
     }
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
-
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;

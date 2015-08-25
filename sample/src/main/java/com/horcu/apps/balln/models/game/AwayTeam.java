@@ -11,10 +11,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.horcu.apps.balln.db.horcuDatabase;
+import com.horcu.apps.balln.models.league.Team;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ModelContainer;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.builder.Condition;
+import com.raizlabs.android.dbflow.sql.language.Select;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -309,6 +312,7 @@ public class AwayTeam extends BaseModel implements Parcelable
     public void setSpecialTeamsId(Long specialTeamsId) {
         this.specialTeamsId = specialTeamsId;
     }
+
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
