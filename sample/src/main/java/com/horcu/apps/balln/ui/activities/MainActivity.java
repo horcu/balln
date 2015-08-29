@@ -16,25 +16,24 @@
 
 package com.horcu.apps.balln.ui.activities;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+
 import com.horcu.apps.balln.R;
+import com.horcu.apps.balln.custom.ColorBarDrawable;
 import com.horcu.apps.balln.ui.fragments.DoubleHeaderFragment;
-import com.horcu.apps.balln.ui.fragments.PinnedHeaderFragment;
-import com.horcu.apps.balln.ui.fragments.StickyHeaderFragment;
-import com.joanzapata.iconify.IconDrawable;
-import com.joanzapata.iconify.fonts.SimpleLineIconsIcons;
 
 
 public class MainActivity extends BaseActivity {
@@ -45,13 +44,25 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-          //  getActionBar().show();
+
         try {
             HeaderPagerAdapter adapter = new HeaderPagerAdapter(this.getSupportFragmentManager());
-
             ViewPager pager = (ViewPager) this.findViewById(R.id.pager);
             pager.setAdapter(adapter);
 
+            Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+            android.support.v7.app.ActionBar ab = getSupportActionBar();
+            if (ab != null) {
+                ab.setHomeButtonEnabled(true);
+                ab.setDefaultDisplayHomeAsUpEnabled(true);
+            }
+
+            setSupportActionBar(toolbar);
+
+            toolbar.setTitle("do kno ?");
+
+            int[] teamDrawables = new int[]{R.color.primary};
+            toolbar.setBackground(new ColorBarDrawable(teamDrawables));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,8 +84,6 @@ public class MainActivity extends BaseActivity {
         }
         return false;
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -100,32 +109,33 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-            try {
-                if (position == 0) {
-                    return new PinnedHeaderFragment();
-               } else if(position == 1) {
-                    return new DoubleHeaderFragment();
-                 }
-                else
-                {
-                    return new StickyHeaderFragment();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
+            return new DoubleHeaderFragment();
+//            try {
+//                if (position == 0) {
+//                    return new PinnedHeaderFragment();
+//               } else if(position == 1) {
+//                    return new DoubleHeaderFragment();
+//                 }
+//                else
+//                {
+//                    return new StickyHeaderFragment();
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+          //  return null;
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 1;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             try {
                 if (position == 0) {
-                    return "PINNED";
+                    return "WEEK 1";
                 } else if(position == 1) {
                     return "WEEK ONE";
                 }

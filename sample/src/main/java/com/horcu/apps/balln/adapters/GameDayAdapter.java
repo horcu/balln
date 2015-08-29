@@ -260,7 +260,7 @@ public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHold
             return;
 
         try {
-            Game game = games.get(position);
+           final  Game game = games.get(position);
 
             AwayTeam ateam = new Select().from(AwayTeam.class).where(Condition.column("id").eq(game.getAwayTeamId())).querySingle();
             HomeTeam hteam = new Select().from(HomeTeam.class).where(Condition.column("id").eq(game.getHomeTeamId())).querySingle();
@@ -274,6 +274,18 @@ public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHold
             Drawable d1 =  context.getResources().getDrawable(TeamHelmets.getHelmet(homeLogo));
             viewholder.awayTeamImage.setImageDrawable(d);
             viewholder.homeTeamImage.setImageDrawable(d1);
+
+            viewholder.triggerEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(games.size() < 1)
+                        return;
+
+                    Intent myIntent = new Intent(v.getContext(), GameActivity.class);
+                    myIntent.putExtra("game", game);
+                    v.getContext().startActivity(myIntent);
+                }
+            });
 
             viewholder.bind(game);
         } catch (Resources.NotFoundException e) {
@@ -317,7 +329,7 @@ public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHold
            // refresh.setOnClickListener(new refreshClick());
 
             editMatchup = (com.joanzapata.iconify.widget.IconTextView) item.findViewById(R.id.edit_matchup);
-            editMatchup.setOnClickListener(new editClick());
+            editMatchup.setOnClickListener(new editClick() );
         }
 
         @UiThread
@@ -325,18 +337,11 @@ public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHold
             this.binding.setGame(game);
         }
 
-        private class refreshClick implements View.OnClickListener {
-            @Override
-            public void onClick(View v) {
-
-            }
-        }
-
         private class editClick implements View.OnClickListener {
             @Override
             public void onClick(View v) {
-            if(games.size() < 1)
-                return;
+                if (games.size() < 1)
+                    return;
 
                 Game game = games.get(getAdapterPosition());
                 Intent myIntent = new Intent(v.getContext(), GameActivity.class);
@@ -368,11 +373,11 @@ public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHold
             dataLayout = (RelativeLayout)itemView;
             date = (TextView)itemView.findViewById(R.id.scheduled_date);
         }
-
     }
 
     static class SubHeaderHolder extends RecyclerView.ViewHolder {
         public LinearLayout matchup;
+        public TextView triggerEdit;
         public ImageView awayTeamImage;
         public ImageView homeTeamImage;
         private HeaderTestBinding binding;
@@ -384,10 +389,10 @@ public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHold
                 this.binding = binding;
 
                 matchup = (LinearLayout) itemView;
+                triggerEdit = (TextView) matchup.findViewById(R.id.text_item_vs);
                 homeTeamImage = (ImageView) matchup.findViewById(R.id.home_image);
                 awayTeamImage = (ImageView) matchup.findViewById(R.id.away_image);
 
-                matchup.setOnClickListener(new editClick());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -398,19 +403,6 @@ public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHold
                 this.binding.setGame(game);
             } catch (Exception e) {
                 e.printStackTrace();
-            }
-        }
-
-        private class editClick implements View.OnClickListener {
-            @Override
-            public void onClick(View v) {
-                if(games.size() < 1)
-                    return;
-
-                Game game = games.get(getAdapterPosition());
-                Intent myIntent = new Intent(v.getContext(), GameActivity.class);
-                myIntent.putExtra("game", game);
-                v.getContext().startActivity(myIntent);
             }
         }
     }

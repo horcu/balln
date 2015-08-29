@@ -14,13 +14,13 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/bg"
+    android:layout_height="40dp"
+    android:background="#e8eaf6"
     android:gravity="center_vertical"
+    android:layout_marginTop="0dp"
     android:padding="9dp">
 
     <TextView android:id="@+id/scheduled_date"
@@ -45,19 +45,19 @@
 
     <com.joanzapata.iconify.widget.IconTextView
         android:id="@+id/edit_wind_direction"
-        android:layout_toLeftOf="@+id/weather"
-        android:layout_width="20dp"
+        android:layout_toStartOf="@+id/weather"
+        android:layout_width="10dp"
         android:layout_height="20dp"
         android:text="{wi_direction_down_right}"
         android:layout_centerInParent="true"
         android:shadowColor="#22000000"
         android:shadowRadius="1"
-        android:layout_weight="1"
         android:gravity="end"
+        android:background="@android:color/transparent"
         android:textSize="25sp"
         android:textColor="@color/textcolor"
         android:layout_gravity="center"
-        android:layout_marginRight="25dp"
+        android:layout_marginEnd="40dp"
         />
 
 

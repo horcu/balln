@@ -4,22 +4,24 @@
     <!--<style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">-->
         <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
     <!--</style>-->
-    <style name="Theme.DataBinding" parent="@android:style/Theme.Material.Light.DarkActionBar">
-        <item name="colorPrimary">@color/main_bg_color</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="android:actionBarStyle">@style/abStyle</item>
-        <item name="colorAccent">@color/accent</item>
+    <style name="Theme.DataBinding" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_dark</item>
+        <item name="colorPrimaryDark">#2e2e2e</item>
+        <item name="colorAccent">@color/primary_light</item>
+        <item name="android:amPmBackgroundColor">@color/primary_light</item>
+        <item name="android:backgroundStacked">@color/primary_light</item>
+
     </style>
 
-<style name="abStyle" parent="Base.Widget.AppCompat.ActionBar">
-    <item name="android:height">50dip</item>
-    <item name="colorPrimaryDark">@color/primary_dark</item>
-    <item name="android:actionBarSize">50dp</item>
-    <item name="colorAccent">@color/accent</item>
-    <item name="android:backgroundStacked">@color/primary_dark</item>
-    <item name="android:background">@color/primary_dark</item>
+<!--<style name="abStyle" parent="Base.Widget.Material.ActionBar">-->
+    <!--<item name="android:height">50dip</item>-->
+    <!--<item name="colorPrimaryDark">@color/primary_dark</item>-->
+    <!--<item name="android:actionBarSize">0dp</item>-->
+    <!--<item name="colorAccent">@color/accent</item>-->
+    <!--<item name="android:backgroundStacked">@color/primary_dark</item>-->
+    <!--<item name="android:background">@color/primary_dark</item>-->
 
-</style>
+<!--</style>-->
 
     <style name="FullscreenTheme" parent="Theme.AppCompat.Light">
         <item name="android:windowContentOverlay">@null</item>
@@ -97,4 +99,5 @@
     </style>
 
 
+    <color name="itthis">#616161</color>
 </resources>

@@ -1,18 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#c5cae9</color>
-    <color name="primary_light">#9fa8da</color>
-    <color name="primary_dark">#7986cb</color>
+    <color name="primary">#ffffff</color>
+    <color name="primary_light">#ffffff</color>
+    <color name="primary_dark">#ffffff</color>
 
-    <color name="accent">#E91E63</color>
+    <color name="accent">#ffffff</color>
     <color name="accent_light">#F48FB1</color>
     <color name="accent_dark">#AD1457</color>
 
     <color name="black_overlay">#66000000</color>
     <color name="textcolor">#44000000</color>
     <color name="matchup_edit">#fafafa</color>
-    <color name="main_bg_color">#e8eaf6</color>
+    <color name="main_bg_color">#eeeeee</color>
     <color name="white">#ffffff</color>
     <color name="whitesmoke">#dcdcdc</color>
     <color name="bg">#e8eaf6</color>
+
+
+    <!--Teams-->
+    <color name="ravens">#241773</color>
+    <color name="bills">#00338d</color>
+    <color name="cardinals">#97233f</color>
+    <color name="falcons">#a71930</color>
+    <color name="panthers">#0085ca</color>
+    <color name="bears">#0b162a</color>
+    <color name="bengals">#000000</color>
+    <color name="browns">#fb4f14</color>
+    <color name="cowboys">#002244</color>
+    <color name="broncoa">#fb4f14</color>
+    <color name="lions">#005a8b</color>
+    <color name="packers">#203731</color>
+    <color name="texans">#03202f</color>
+    <color name="colts">#002c5f</color>
+    <color name="jaguars">#006778</color>
+    <color name="chiefs">#241773</color>
+    <color name="dolphins">#008e97</color>
+    <color name="vikings">#4f2683</color>
+    <color name="patriots">#002244</color>
+    <color name="saints">#9f8958</color>
+    <color name="giants">#0b2265</color>
+    <color name="jets">#203731</color>
+    <color name="raiders">#a5acaf</color>
+    <color name="eagles">#004953</color>
+    <color name="steelers">#ffb612</color>
+    <color name="chargers">#002244</color>
+    <color name="fortyniners">#aa0000</color>
+    <color name="seahawks">#002244</color>
+    <color name="rams">#002244</color>
+    <color name="buccaneers">#d50a0a</color>
+    <color name="titans">#002244</color>
+    <color name="redskins">#773141</color>
 </resources>

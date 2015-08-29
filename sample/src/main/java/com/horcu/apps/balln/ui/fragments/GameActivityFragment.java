@@ -16,8 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ViewAnimator;
 
 import com.horcu.apps.balln.R;
@@ -142,6 +144,8 @@ public class GameActivityFragment extends Fragment {
             //set up the home team spinners
             NiceSpinner qbSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_qb_spinner);
             qbSpinnerHome.setTextColor(Color.parseColor(tcol1.getSecondaryColor()));
+            qbSpinnerHome.setAdapter(new ArrayAdapter<Player>(getActivity(),R.layout.player_chooser_item_row, R.id.player_name));
+
             NiceSpinner rbSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_rb_spinner);
             NiceSpinner wrSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_wr_spinner);
             NiceSpinner teSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_te_spinner);

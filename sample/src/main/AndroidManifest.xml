@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.horcu.apps.balln">
-
-
+    package="com.horcu.apps.balln" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".ballnApp"
         android:allowBackup="true"
-        tools:replace="icon"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-
         android:theme="@style/Theme.DataBinding"
-        android:name="com.horcu.apps.balln.ballnApp">
-
+        tools:replace="icon" >
         <activity
-            android:name="com.horcu.apps.balln.ui.activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,21 +23,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.horcu.apps.balln.ui.activities.PlayerChooserActivity"
+            android:name=".ui.activities.PlayerChooserActivity"
             android:label="@string/title_activity_player_chooser"
-            android:theme="@style/Theme.DataBinding"
-            android:parentActivityName="com.horcu.apps.balln.ui.activities.GameActivity" >
+            android:parentActivityName=".ui.activities.GameActivity"
+            android:theme="@style/Theme.DataBinding" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.horcu.apps.balln.ui.activities.GameActivity" />
         </activity>
         <activity
-            android:name="com.horcu.apps.balln.ui.activities.GameActivity"
+            android:name=".ui.activities.GameActivity"
             android:label="@string/title_activity_game" >
         </activity>
         <activity
-            android:name="com.horcu.apps.balln.ui.activities.SettingsActivity"
+            android:name=".ui.activities.SettingsActivity"
             android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name=".ui.activities.CrashActivityActivity"
+            android:label="@string/title_activity_crash" >
         </activity>
     </application>
 

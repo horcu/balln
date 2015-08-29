@@ -16,9 +16,11 @@
 
 package com.horcu.apps.balln.ui.fragments;
 
+import android.app.Activity;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Toolbar;
 
 import com.horcu.apps.balln.R;
 import com.horcu.apps.balln.adapters.GameDayAdapter;
@@ -30,19 +32,23 @@ public class DoubleHeaderFragment extends BaseDecorationFragment {
     private DoubleHeaderDecoration decor;
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
     protected void setAdapterAndDecor(RecyclerView list) {
         try {
-            final GameDayAdapter adapter = new GameDayAdapter(getActivity().findViewById(android.R.id.empty),  this.getActivity());
+            final GameDayAdapter adapter = new GameDayAdapter(getActivity().findViewById(R.id.empty),  this.getActivity());
             decor = new DoubleHeaderDecoration(adapter);
             setHasOptionsMenu(true);
             list.setAdapter(adapter);
             list.addItemDecoration(decor, 1);
 
-            //getActivity().setActionBar((Toolbar) this.getActivity().findViewById(R.id.toolbar));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         //this.presenter = ActivityMainPresenter.create(null, getActivity());
         //this.adapter = new ScheduleAdapter(this.getActivity().findViewById(R.id.empty),getActivity());
       //  this.presenter.getSchedule("1", true); // only week 1 for now

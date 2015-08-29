@@ -17,7 +17,9 @@
 package com.horcu.apps.balln.ui.fragments;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,11 +28,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Toolbar;
 
 import com.horcu.apps.balln.R;
-import com.joanzapata.iconify.IconDrawable;
-import com.joanzapata.iconify.fonts.SimpleLineIconsIcons;
 
 import ca.barrenechea.widget.recyclerview.decoration.DividerDecoration;
 
@@ -45,7 +45,8 @@ public abstract class BaseDecorationFragment extends Fragment {
             final View view = inflater.inflate(R.layout.fragment_recycler, container, false);
 
             mList = (RecyclerView) view.findViewById(R.id.games);
-
+//            Toolbar toolbar = (Toolbar)getActivity().findViewById(R.id.toolbar);
+//            getActivity().setActionBar(toolbar);
             return view;
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,9 +55,15 @@ public abstract class BaseDecorationFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         try {
             super.onActivityCreated(savedInstanceState);
+
 
             mList.setHasFixedSize(true);
             mList.setLayoutManager(new LinearLayoutManager(this.getActivity()));
