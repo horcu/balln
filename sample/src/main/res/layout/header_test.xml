@@ -20,99 +20,68 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
    android:background="@color/white"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/trigger_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/away_image"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="start"
-                android:layout_marginRight="5dp"
-                android:src="@drawable/ravens_away"
-                />
-
-            <TextView
-                android:id="@+id/text_item_away_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/away_image"
-                android:textSize="14sp"
-                android:textColor="#999999"
-                android:layout_toRightOf="@id/away_image"
-                android:textAllCaps="true"
-                android:layout_marginTop="20dp"
-                android:text="(0 - 1)"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"/>
-
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:padding="5dp"
+                android:background="@color/white"
                 android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/text_item_vs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:layout_toRightOf="@+id/text_item_away_name"
-                    android:textColor="#999999"
-                    android:text="\@"/>
+                <ImageView
+                    android:id="@+id/away_image"
+                    android:layout_width="70dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_height="70dp"
+                    android:src="@drawable/raiders_away"
+                    />
 
                 <TextView
-                    android:id="@+id/text_item_loc"
+                    android:id="@+id/text_item_away_name"
                     android:layout_width="wrap_content"
-                    android:layout_gravity="bottom"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textSize="15sp"
-                    android:background="#ffffff"
-                    android:textColor="#999999"
-                    android:text=""/>
-            </FrameLayout>
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:textAllCaps="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="75dp"
+                    android:layout_marginTop="20dp"
+                    android:text="(0 - 1)"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/text_item_home_name"
                 android:layout_width="wrap_content"
-                android:layout_toRightOf="@+id/text_item_vs"
                 android:layout_height="wrap_content"
-                android:gravity="center|right"
-                android:textColor="#999999"
+                android:textColor="#ffffff"
                 android:textSize="14sp"
                 android:textAllCaps="true"
-                android:layout_toEndOf="@+id/text_item_vs"
-                android:layout_toLeftOf="@+id/home_image"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="75dp"
                 android:layout_marginTop="20dp"
-
-                android:layout_weight="1"
                 android:text="(0 - 1)"
                 android:textAppearance="?android:attr/textAppearanceMedium"/>
 
             <ImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/home_image"
                 android:layout_alignParentRight="true"
                 android:layout_width="70dp"
+                android:background="@android:color/transparent"
                 android:layout_height="70dp"
-                android:layout_gravity="end"
-                android:layout_marginLeft="5dp"
-                android:src="@drawable/cardinals_home"
-                 />
+                android:src="@drawable/ravens_home"
+                android:layout_weight="1"
+                />
 
-        </LinearLayout>
-
+        </RelativeLayout>
 
 </LinearLayout>
-
-
     </layout>

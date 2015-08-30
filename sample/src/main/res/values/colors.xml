@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#ffffff</color>
-    <color name="primary_light">#ffffff</color>
-    <color name="primary_dark">#ffffff</color>
+    <color name="primary">#3f51b5</color>
+    <color name="primary_light">#3f51b5</color>
+    <color name="primary_dark">#3f51b5</color>
 
-    <color name="accent">#ffffff</color>
+    <color name="accent">#3f51b5</color>
     <color name="accent_light">#F48FB1</color>
     <color name="accent_dark">#AD1457</color>
 
@@ -15,7 +15,6 @@
     <color name="white">#ffffff</color>
     <color name="whitesmoke">#dcdcdc</color>
     <color name="bg">#e8eaf6</color>
-
 
     <!--Teams-->
     <color name="ravens">#241773</color>

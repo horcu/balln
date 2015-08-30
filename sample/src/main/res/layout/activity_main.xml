@@ -44,7 +44,7 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:layout_scrollFlags="scroll|enterAlways" >
 
-                <include layout="@layout/tab_week_game"/>
+                <!--<include layout="@layout/tab_week_game"/>-->
 
                 </android.support.v7.widget.Toolbar>
 

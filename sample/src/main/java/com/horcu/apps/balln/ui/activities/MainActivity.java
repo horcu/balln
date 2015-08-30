@@ -17,6 +17,7 @@
 package com.horcu.apps.balln.ui.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -59,10 +60,8 @@ public class MainActivity extends BaseActivity {
 
             setSupportActionBar(toolbar);
 
-            toolbar.setTitle("do kno ?");
-
-            int[] teamDrawables = new int[]{R.color.primary};
-            toolbar.setBackground(new ColorBarDrawable(teamDrawables));
+            toolbar.setTitle("Select matchups and dig in..");
+            toolbar.setTitleTextColor(Color.parseColor("#dddddd"));
 
         } catch (Exception e) {
             e.printStackTrace();

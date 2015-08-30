@@ -275,17 +275,17 @@ public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHold
             viewholder.awayTeamImage.setImageDrawable(d);
             viewholder.homeTeamImage.setImageDrawable(d1);
 
-            viewholder.triggerEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(games.size() < 1)
-                        return;
-
-                    Intent myIntent = new Intent(v.getContext(), GameActivity.class);
-                    myIntent.putExtra("game", game);
-                    v.getContext().startActivity(myIntent);
-                }
-            });
+//            viewholder.triggerEdit.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if(games.size() < 1)
+//                        return;
+//
+//                    Intent myIntent = new Intent(v.getContext(), GameActivity.class);
+//                    myIntent.putExtra("game", game);
+//                    v.getContext().startActivity(myIntent);
+//                }
+//            });
 
             viewholder.bind(game);
         } catch (Resources.NotFoundException e) {
@@ -389,7 +389,7 @@ public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHold
                 this.binding = binding;
 
                 matchup = (LinearLayout) itemView;
-                triggerEdit = (TextView) matchup.findViewById(R.id.text_item_vs);
+
                 homeTeamImage = (ImageView) matchup.findViewById(R.id.home_image);
                 awayTeamImage = (ImageView) matchup.findViewById(R.id.away_image);
 
