@@ -1,49 +1,44 @@
 package com.horcu.apps.balln.ui.fragments;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ViewAnimator;
 
+
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.horcu.apps.balln.R;
 import com.horcu.apps.balln.models.game.AwayTeam;
 import com.horcu.apps.balln.models.game.Game;
 import com.horcu.apps.balln.models.game.HomeTeam;
 import com.horcu.apps.balln.models.game.Offense;
 import com.horcu.apps.balln.models.game.Player;
-
 import com.horcu.apps.balln.models.game.PlayerPosition;
 import com.horcu.apps.balln.models.game.Position;
 import com.horcu.apps.balln.models.game.TeamColors;
 import com.horcu.apps.balln.ui.activities.PlayerChooserActivity;
 import com.horcu.apps.balln.utilities.TeamHelmets;
-import com.horcu.apps.balln.widget.floatinglabel.itemchooser.FloatingLabelItemChooser;
-import com.joanzapata.iconify.IconDrawable;
-import com.joanzapata.iconify.fonts.SimpleLineIconsIcons;
+import com.horcu.apps.balln.utilities.decorUtil;
+
 import com.raizlabs.android.dbflow.sql.builder.Condition;
 import com.raizlabs.android.dbflow.sql.language.Select;
 
 import org.angmarch.views.NiceSpinner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,6 +51,7 @@ public class GameActivityFragment extends Fragment {
     public GameActivityFragment() {
     }
 
+    int count = 0;
     public static final int REQUEST_CHOOSE_PLAYER = 0x1234;
 
 
@@ -69,7 +65,7 @@ public class GameActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_game, container, false);
+        final View root = inflater.inflate(R.layout.fragment_game, container, false);
         try {
             Intent intent = getActivity().getIntent();
             final Game game = intent.getParcelableExtra("game");
@@ -99,7 +95,9 @@ public class GameActivityFragment extends Fragment {
             TeamColors tcol1 = new Select().from(TeamColors.class).where(Condition.column("id").eq(ateam.getTeamColorsId())).querySingle();
             TeamColors tcol2 = new Select().from(TeamColors.class).where(Condition.column("id").eq(hteam.getTeamColorsId())).querySingle();
 
-            getActivity().getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(tcol1.getPrimaryColor())));
+//            ActionBar ab = getActivity().getActionBar();
+//            if(ab!=null)
+//                ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor(tcol1.getPrimaryColor())));
 
             final String awayColor = tcol1.getPrimaryColor();
             final View homeBar = root.findViewById(R.id.top_bar_spacer_away);
@@ -116,7 +114,8 @@ public class GameActivityFragment extends Fragment {
                 public void onClick(View v) {
                  viewAnimator.setDisplayedChild(1);
                     homeBar.setBackgroundColor(Color.parseColor(String.valueOf(homeColor)));
-                    getActivity().getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(homeColor)));
+                    root.findViewById(R.id.a_bar).setBackgroundColor(Color.parseColor(homeColor));
+                    decorUtil.changeStatusBarColor(getActivity(),Color.parseColor(homeColor));
 
                 }
             });
@@ -127,8 +126,8 @@ public class GameActivityFragment extends Fragment {
                 public void onClick(View v) {
                     viewAnimator.setDisplayedChild(0);
                     homeBar.setBackgroundColor(Color.parseColor(String.valueOf(awayColor)));
-                    getActivity().getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(awayColor)));
-
+                    root.findViewById(R.id.a_bar).setBackgroundColor(Color.parseColor(awayColor));
+                    decorUtil.changeStatusBarColor(getActivity(), Color.parseColor(awayColor));
                 }
             });
 
@@ -136,6 +135,7 @@ public class GameActivityFragment extends Fragment {
             NiceSpinner qbSpinnerAway = (NiceSpinner)root.findViewById(R.id.away_qb_spinner);
            // qbSpinnerAway.setTextColor(ColorStateList.createFromXml());
             qbSpinnerAway.setTextColor(Color.parseColor(tcol1.getSecondaryColor()));
+            qbSpinnerAway.addOnItemClickListener(new SpinnerItemClickListener());
 
             NiceSpinner rbSpinnerAway = (NiceSpinner)root.findViewById(R.id.away_rb_spinner);
             NiceSpinner wrSpinnerAway = (NiceSpinner)root.findViewById(R.id.away_wr_spinner);
@@ -143,8 +143,7 @@ public class GameActivityFragment extends Fragment {
 
             //set up the home team spinners
             NiceSpinner qbSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_qb_spinner);
-            qbSpinnerHome.setTextColor(Color.parseColor(tcol1.getSecondaryColor()));
-            qbSpinnerHome.setAdapter(new ArrayAdapter<Player>(getActivity(),R.layout.player_chooser_item_row, R.id.player_name));
+            //qbSpinnerHome.setTextColor(Color.parseColor(tcol1.getSecondaryColor()));
 
             NiceSpinner rbSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_rb_spinner);
             NiceSpinner wrSpinnerHome = (NiceSpinner)root.findViewById(R.id.home_wr_spinner);
@@ -229,7 +228,18 @@ public class GameActivityFragment extends Fragment {
             wrSpinnerHome.attachDataSource(getNames(HomeWideReceivers));
             teSpinnerHome.attachDataSource(getNames(HomeTightEnds));
 
-        } catch (Resources.NotFoundException e) {
+
+            TextDrawable drawable = TextDrawable.builder()
+                    .beginConfig()
+                    .width(60)  // width in px
+                    .height(60) // height in px
+                    .endConfig()
+                    .buildRect("Qb", Color.parseColor(awayColor));
+
+            ImageView image = (ImageView) root.findViewById(R.id.image_view);
+            image.setImageDrawable(drawable);
+
+    } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
         return root;
@@ -273,4 +283,15 @@ public class GameActivityFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private class SpinnerItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        }
+    }
+
+    public float dp2px(float dp) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return dp * scale + 0.5f;
+    }
 }

@@ -39,7 +39,7 @@ public class StickyTestAdapter extends RecyclerView.Adapter<StickyTestAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        final View view = mInflater.inflate(R.layout.item_test, viewGroup, false);
+        final View view = mInflater.inflate(R.layout.teams_list, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -51,12 +51,13 @@ public class StickyTestAdapter extends RecyclerView.Adapter<StickyTestAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 50;
+        return 1;
     }
 
     @Override
     public long getHeaderId(int position) {
-        return (long) position / 7;
+       // return (long) position / 7;
+        return 1;
     }
 
     @Override

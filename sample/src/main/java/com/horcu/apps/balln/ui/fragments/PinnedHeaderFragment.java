@@ -32,11 +32,11 @@ public class PinnedHeaderFragment extends BaseDecorationFragment {
     protected void setAdapterAndDecor(RecyclerView list) {
         try {
             final StickyTestAdapter adapter = new StickyTestAdapter(this.getActivity());
-            //decor = new StickyHeaderDecoration(adapter);
+          //  decor = new StickyHeaderDecoration(adapter);
             setHasOptionsMenu(true);
 
-            //list.setAdapter(adapter);
-           // list.addItemDecoration(decor, 1);
+           // list.setAdapter(adapter);
+         //   list.addItemDecoration(decor, 1);
         } catch (Exception e) {
             e.printStackTrace();
         }

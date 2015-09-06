@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout
+    android:id="@+id/players_main"
+    android:layout_width="match_parent"
+    android:background="@color/bg"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-        <variable name="game" type="com.horcu.apps.balln.models.game.Game"/>
-        <variable name="offenseId" type="com.horcu.apps.balln.models.game.Offense"/>
-        <variable name="defenseId" type="com.horcu.apps.balln.models.game.Defense"/>
-        <variable name="specialTeamsId" type="com.horcu.apps.balln.models.game.SpecialTeams"/>
-        <variable name="position" type="com.horcu.apps.balln.models.game.Position"/>
-        <variable name="player" type="com.horcu.apps.balln.models.game.Player"/>
+        <LinearLayout
+            android:id="@+id/a_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:orientation="horizontal"
+            android:background="@color/primary">
 
+        </LinearLayout>
 
-    </data>
-
-    <RelativeLayout
-        android:id="@+id/players_main"
-        android:layout_width="match_parent"
-        android:background="@color/bg"
-        android:layout_height="match_parent">
+        <include android:id="@+id/super_header"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/a_bar"
+            layout="@layout/super_header_test" />
 
         <!--header-->
         <LinearLayout
             android:id="@+id/top_bar"
+            android:layout_below="@+id/super_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -43,8 +47,6 @@
                 android:layout_height="match_parent"
                 android:padding="5dp"
                 android:layout_weight="1">
-
-
 
                 <TextView
                     android:id="@+id/home_text_item_loc"
@@ -88,292 +90,377 @@
             android:layout_below="@+id/top_bar"
             android:layout_height="0dp" />
 
+   <ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/body"
+    android:layout_below="@+id/top_bar_spacer_away"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-        <ViewAnimator
-            android:id="@+id/mathups_animator"
-            android:layout_below="@+id/top_bar_spacer_away"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <ViewAnimator
+        android:id="@+id/mathups_animator"
+        android:layout_below="@+id/top_bar_spacer_away"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-            <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view_away"
-                android:layout_gravity="top"
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_away"
+            android:layout_gravity="top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            card_view:cardElevation="2dp"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="3dp">
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                card_view:cardElevation="2dp"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardCornerRadius="3dp">
+                android:layout_height="wrap_content">
 
-
+                <!--qbs-->
                 <RelativeLayout
+                    android:id="@+id/home_qbs"
                     android:layout_width="match_parent"
+                    android:orientation="vertical"
                     android:layout_height="wrap_content">
 
-
-                    <!--qbs-->
                     <LinearLayout
-                        android:id="@+id/home_qbs"
+                        android:id="@+id/qb_row"
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="@dimen/player_chooser_height">
+                        android:layout_height="50dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_football"
+                            android:id="@+id/image_view"/>
 
                         <org.angmarch.views.NiceSpinner
                             android:id="@+id/away_qb_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_weight="100"
                             android:text="Quarterbacks"/>
 
-                        <TextView
-                            android:id="@+id/home_quarterback_away"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Joe Flacco"/>
+                        <ImageView
+                            android:id="@+id/edit_wind_direction"
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:shadowColor="#22000000"
+                            android:shadowRadius="1"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:src="@drawable/ic_navigation_more_vert"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="9dp"
+                            />
 
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/home_rbs"
-                        android:layout_below="@+id/home_qbs"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/player_chooser_height"
-                        android:orientation="horizontal"
-                        >
+                        android:layout_below="@+id/qb_row"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:padding="3dp">
 
-                        <org.angmarch.views.NiceSpinner
-                            android:id="@+id/away_rb_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Running backs"/>
+                        <!--<com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch-->
+                        <!--android:id="@+id/pin"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_width="100dp"-->
+                        <!--android:layout_gravity="right"-->
+                        <!--android:layout_marginRight="9dp"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--app:base_release_color="@color/packers"-->
+                        <!--app:base_press_color="@color/md_deep_orange_50"-->
+                        <!--app:ball_release_color="@color/md_deep_orange_500"-->
+                        <!--app:ball_press_color="@color/md_white_1000"-->
+                        <!--app:icon_release="@drawable/packers"-->
+                        <!--app:icon_press="@drawable/ic_stop_deep_orange_500_36dp"-->
+                        <!--/>-->
 
-                        <TextView
-                            android:id="@+id/away_runningback_away"
-                            android:layout_width="wrap_content"
+
+                        <include
+                            android:id="@+id/qb_away_bets"
+                            android:background="#eeeeee"
+                            android:layout_below="@+id/away_qb_spinner"
+                            layout="@layout/qb_bet"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Justin Forsett"/>
+                            android:layout_width="match_parent" />
 
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/home_wrs"
-                        android:layout_below="@+id/home_rbs"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/player_chooser_height"
-                        android:orientation="horizontal">
-
-                        <org.angmarch.views.NiceSpinner
-                            android:id="@+id/away_wr_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Wide receivers"/>
-
-                        <TextView
-                            android:id="@+id/home_widereceiver_away"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Marlon Brown"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/home_tes"
-                        android:layout_below="@+id/home_wrs"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/player_chooser_height"
-                        android:orientation="horizontal">
-
-                        <org.angmarch.views.NiceSpinner
-                            android:id="@+id/away_te_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Tight ends"/>
-
-                        <TextView
-                            android:id="@+id/home_tightends_away"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Marlon Brown"/>
-
-
-                    </LinearLayout>
 
 
                 </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
+                <LinearLayout
+                    android:id="@+id/home_rbs"
+                    android:layout_below="@+id/home_qbs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="invisible"
+                    >
 
-            <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view_home"
-                android:layout_gravity="top"
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/ic_football"
+                        android:id="@+id/image_view2"/>
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/away_rb_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="100"
+                        android:text="Running backs"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/away_qb_spinner"
+                        android:layout_height="wrap_content">
+
+                        <include
+                            android:id="@+id/rb_away_bets"
+                            android:layout_below="@+id/away_qb_spinner"
+                            layout="@layout/qb_bet"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/home_wrs"
+                    android:layout_below="@+id/home_rbs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/away_wr_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Wide receivers"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/away_qb_spinner"
+                        android:layout_height="wrap_content">
+
+                        <include
+                            android:id="@+id/wr_away_bets"
+                            android:layout_below="@+id/away_qb_spinner"
+                            layout="@layout/qb_bet"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/home_tes"
+                    android:layout_below="@+id/home_wrs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/away_te_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Tight ends"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/away_qb_spinner"
+                        android:layout_height="wrap_content">
+
+                        <include
+                            android:id="@+id/te_away_bets"
+                            android:layout_below="@+id/away_qb_spinner"
+                            layout="@layout/qb_bet"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_home"
+            android:layout_gravity="top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardElevation="2dp"
+
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="3dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                card_view:cardElevation="2dp"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardCornerRadius="3dp">
+                >
 
-                <RelativeLayout
+
+                <!--qbs-->
+                <LinearLayout
+                    android:id="@+id/qbs"
                     android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layoutDirection="rtl"
+                    android:textDirection="rtl"
                     android:layout_height="wrap_content">
 
-
-                    <!--qbs-->
-                    <LinearLayout
-                        android:id="@+id/qbs"
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/home_qb_spinner"
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="@dimen/player_chooser_height">
-
-                        <org.angmarch.views.NiceSpinner
-                            android:id="@+id/home_qb_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Quarterbacks"/>
-
-                        <TextView
-                            android:id="@+id/quarterback_away"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Joe Flacco"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/rbs"
-                        android:layout_below="@+id/qbs"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/player_chooser_height"
-                        android:orientation="horizontal"
-                        >
-
-                        <org.angmarch.views.NiceSpinner
-                            android:id="@+id/home_rb_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Running backs"/>
-
-                        <TextView
-                            android:id="@+id/runningback_away"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Justin Forsett"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/wrs"
-                        android:layout_below="@+id/rbs"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/player_chooser_height"
-                        android:orientation="horizontal">
-
-                        <org.angmarch.views.NiceSpinner
-                            android:id="@+id/home_wr_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Wide receivers"/>
-
-                        <TextView
-                            android:id="@+id/widereceiver_away"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Marlon Brown"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/tes"
-                        android:layout_below="@+id/wrs"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/player_chooser_height"
-                        android:orientation="horizontal">
-
-                        <org.angmarch.views.NiceSpinner
-                            android:id="@+id/home_te_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Tight ends"/>
-
-                        <TextView
-                            android:id="@+id/tightends_away"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textAlignment="textStart"
-                            android:textColor="#999999"
-                            android:text="Marlon Brown"/>
-
-
-                    </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:text="Quarterbacks"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:layout_below="@+id/away_qb_spinner"
                         android:layout_height="wrap_content">
 
+                        <include
+                            android:id="@+id/qb_home_bets"
+                            android:layout_below="@+id/away_qb_spinner"
+                            layout="@layout/qb_bet"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" />
+
+
                     </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rbs"
+                    android:layout_below="@+id/qbs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/home_rb_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Running backs"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:layout_below="@+id/away_qb_spinner"
                         android:layout_height="wrap_content">
 
+                        <include
+                            android:id="@+id/rb_home_bets"
+                            android:layout_below="@+id/away_qb_spinner"
+                            layout="@layout/qb_bet"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" />
+
+
                     </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/wrs"
+                    android:layout_below="@+id/rbs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/home_wr_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Wide receivers"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:layout_below="@+id/away_qb_spinner"
                         android:layout_height="wrap_content">
 
+                        <include
+                            android:id="@+id/wr_home_bets"
+                            android:layout_below="@+id/away_qb_spinner"
+                            layout="@layout/qb_bet"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" />
+
+
                     </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tes"
+                    android:layout_below="@+id/wrs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/home_te_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Tight ends"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:layout_below="@+id/away_qb_spinner"
                         android:layout_height="wrap_content">
+
+                        <include
+                            android:id="@+id/te_home_bets"
+                            android:layout_below="@+id/away_qb_spinner"
+                            layout="@layout/qb_bet"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" />
 
                     </LinearLayout>
 
+                </LinearLayout>
 
-                </RelativeLayout>
+            </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
-        </ViewAnimator>
 
-    </RelativeLayout>
-</layout>
+    </ViewAnimator>
+
+       </ScrollView>
+
+   </RelativeLayout>

@@ -10,11 +10,11 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -32,10 +32,6 @@ import com.horcu.apps.balln.models.game.Game;
 import com.horcu.apps.balln.models.game.HomeTeam;
 import com.horcu.apps.balln.models.game.NFLWeek;
 import com.horcu.apps.balln.models.game.NflweekGame;
-import com.horcu.apps.balln.models.game.Offense;
-import com.horcu.apps.balln.models.game.Player;
-import com.horcu.apps.balln.models.game.PlayerPosition;
-import com.horcu.apps.balln.models.game.Position;
 import com.horcu.apps.balln.models.game.TeamColors;
 import com.horcu.apps.balln.models.game.Venue;
 import com.horcu.apps.balln.models.game.Weather;
@@ -54,11 +50,9 @@ import com.horcu.apps.balln.utilities.JsonHelper;
 import com.horcu.apps.balln.utilities.JsonLoader;
 import com.horcu.apps.balln.utilities.TeamHelmets;
 import com.raizlabs.android.dbflow.sql.builder.Condition;
-import com.raizlabs.android.dbflow.sql.language.ColumnAlias;
 import com.raizlabs.android.dbflow.sql.language.Select;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-import org.angmarch.views.NiceSpinner;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -66,16 +60,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import ca.barrenechea.widget.recyclerview.decoration.DoubleHeaderAdapter;
 
-public class GameDayAdapter extends RecyclerView.Adapter<GameDayAdapter.ViewHolder> implements
+
+public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHolder> implements
         DoubleHeaderAdapter<GameDayAdapter.HeaderHolder, GameDayAdapter.SubHeaderHolder> {
 
     private final View empty;

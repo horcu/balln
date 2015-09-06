@@ -35,6 +35,9 @@ import android.widget.Toast;
 import com.horcu.apps.balln.R;
 import com.horcu.apps.balln.custom.ColorBarDrawable;
 import com.horcu.apps.balln.ui.fragments.DoubleHeaderFragment;
+import com.horcu.apps.balln.ui.fragments.PinnedHeaderFragment;
+import com.horcu.apps.balln.ui.fragments.StickyHeaderFragment;
+import com.horcu.apps.balln.utilities.decorUtil;
 
 
 public class MainActivity extends BaseActivity {
@@ -45,7 +48,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        decorUtil.changeStatusBarColor(this, R.color.primary);
         try {
             HeaderPagerAdapter adapter = new HeaderPagerAdapter(this.getSupportFragmentManager());
             ViewPager pager = (ViewPager) this.findViewById(R.id.pager);
@@ -59,9 +62,6 @@ public class MainActivity extends BaseActivity {
             }
 
             setSupportActionBar(toolbar);
-
-            toolbar.setTitle("Select matchups and dig in..");
-            toolbar.setTitleTextColor(Color.parseColor("#dddddd"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,35 +108,35 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return new DoubleHeaderFragment();
-//            try {
-//                if (position == 0) {
-//                    return new PinnedHeaderFragment();
-//               } else if(position == 1) {
-//                    return new DoubleHeaderFragment();
-//                 }
-//                else
-//                {
-//                    return new StickyHeaderFragment();
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-          //  return null;
+          //  return new DoubleHeaderFragment();
+            try {
+                if (position == 0) {
+                    return new PinnedHeaderFragment();
+               } else if(position == 1) {
+                    return new DoubleHeaderFragment();
+                 }
+                else
+                {
+                    return new StickyHeaderFragment();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
         }
 
         @Override
         public int getCount() {
-            return 1;
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             try {
                 if (position == 0) {
-                    return "WEEK 1";
+                    return "TEAMS";
                 } else if(position == 1) {
-                    return "WEEK ONE";
+                    return "MATCHUPS";
                 }
                 else
                 {

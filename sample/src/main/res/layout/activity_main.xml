@@ -39,7 +39,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                android:background="#ffffff"
+                android:background="@color/primary"
 
                 android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:layout_scrollFlags="scroll|enterAlways" >
@@ -53,7 +53,7 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ffffff">
+                android:background="@color/primary">
 
 
 
@@ -72,18 +72,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="top"
-                android:background="@color/primary_light"
+                android:background="#DDDDDD"
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
                 android:textColor="#fff"/>
         </android.support.v4.view.ViewPager>
 
 
-        <com.joanzapata.iconify.widget.IconTextView
+        <TextView
             android:id="@+id/empty"
-            android:layout_width="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:text="{fa-spinner}"
+            android:text="seting up matchups..."
             android:shadowColor="#22000000"
             android:shadowRadius="1"
             android:layout_weight="1"

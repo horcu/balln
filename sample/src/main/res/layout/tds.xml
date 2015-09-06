@@ -1,0 +1,138 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:background="#40dfdfdf"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/tds"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="9dp"
+            android:layout_weight="1"
+            android:text="TDs"/>
+
+        <io.techery.progresshint.addition.widget.SeekBar
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_height="20dp"
+            android:layout_weight="10"
+            android:max="8"
+            android:thumb="@drawable/ic_football"
+            android:progressBackgroundTint="@android:color/transparent"
+            android:thumbTint="@color/packers"
+            app:popupStyle="follow"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="9dp"
+            android:text="$15"
+            android:gravity="center_vertical"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_navigation_check_on"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/yds"
+        android:layout_below="@+id/tds"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="9dp"
+            android:layout_weight="1"
+            android:text="Yds"/>
+
+        <io.techery.progresshint.addition.widget.SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:progressBackgroundTint="@android:color/transparent"
+            android:layout_weight="10"
+            android:layout_gravity="center_vertical"
+            app:popupStyle="follow"
+            android:thumb="@drawable/ic_football"
+            android:thumbTint="@color/packers"
+            android:max="500"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="9dp"
+            android:text="$12"
+            android:gravity="center_vertical"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_navigation_check"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ints"
+        android:layout_below="@+id/yds"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="9dp"
+            android:layout_weight="1"
+            android:text="Ints"/>
+
+        <io.techery.progresshint.addition.widget.SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_weight="10"
+            android:layout_gravity="center_vertical"
+            android:progressBackgroundTint="@android:color/transparent"
+            app:popupStyle="follow"
+            android:thumb="@drawable/ic_football"
+            android:thumbTint="@color/packers"
+            android:max="5"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="9dp"
+            android:gravity="center_vertical"
+            android:text="$20"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_navigation_check_on"/>
+    </LinearLayout>
+
+</RelativeLayout>

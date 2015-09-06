@@ -21,7 +21,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 
 import com.horcu.apps.balln.R;
@@ -51,23 +54,23 @@ public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 50;
+        return 1;
     }
 
     @Override
     public long getHeaderId(int position) {
-        return (long) position / 7;
+        return 1;
     }
 
     @Override
     public HeaderHolder onCreateHeaderViewHolder(ViewGroup parent) {
-        final View view = mInflater.inflate(R.layout.header_test, parent, false);
+        final View view = mInflater.inflate(R.layout.teams_list, parent, false);
         return new HeaderHolder(view);
     }
 
     @Override
     public void onBindHeaderViewHolder(HeaderHolder viewholder, int position) {
-        viewholder.header.setText("Header " + getHeaderId(position));
+
     }
 
 
@@ -82,12 +85,14 @@ public class LiveTestAdapter extends RecyclerView.Adapter<LiveTestAdapter.ViewHo
     }
 
     static class HeaderHolder extends RecyclerView.ViewHolder {
-        public TextView header;
+        public LinearLayout header;
 
         public HeaderHolder(View itemView) {
             super(itemView);
 
-            header = (TextView) itemView;
+            header = (LinearLayout) itemView;
         }
     }
+
+
 }

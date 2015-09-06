@@ -21,7 +21,7 @@
         android:id="@+id/action_about"
         android:orderInCategory="999"
         android:showAsAction="always"
-        android:title="@string/settings"/>
+        android:title="@string/action_settings"/>
 
     <item
         android:id="@+id/action_clear_cache"
