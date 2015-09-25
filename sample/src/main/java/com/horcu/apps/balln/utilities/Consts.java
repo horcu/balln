@@ -16,4 +16,8 @@ public class Consts {
     public static final String DESC = "desc";
     public static final String SPECIAL_TEAMS = "special_teams";
     public static final Date WEEK1_DATE = new Date(2014,9,7) ;
+    public static final Long QB_POSITIONID = Long.valueOf(8);
+    public static final Long WR_POSITIONID = Long.valueOf(7);
+    public static final Long RB_POSITIONID = Long.valueOf(5);
+    public static final Long TE_POSITIONID = Long.valueOf(9);
 }

@@ -16,46 +16,27 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.horcu.apps.balln.db.horcuDatabase;
-import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.ModelContainer;
-import com.raizlabs.android.dbflow.annotation.PrimaryKey;
-import com.raizlabs.android.dbflow.annotation.Table;
-import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Generated("org.jsonschema2pojo")
-@JsonPropertyOrder({
-    "id",
-    "name",
-    "leagueConferenceId"
-})
+import ollie.Model;
+import ollie.annotation.Column;
+import ollie.annotation.PrimaryKey;
+import ollie.annotation.Table;
 
-@ModelContainer
-@Table(databaseName = horcuDatabase.NAME)
-public class League extends BaseModel implements Parcelable
+public class League extends Model implements Parcelable
 {
     public League(){}
 
-    @JsonProperty("id")
-    @Column
-    @PrimaryKey(autoincrement = true)
+
     public Long id;
 
+    public String name;
 
-    @Column
-    @JsonProperty("name")
-    private String name;
+    public Long leagueConferenceId ;
 
-    @Column
-    @JsonProperty("leagueConferenceId")
-    private Long leagueConferenceId ;
-
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<League> CREATOR = new Creator<League>() {
 
 
@@ -64,7 +45,7 @@ public class League extends BaseModel implements Parcelable
             instance.id = ((Long) in.readValue((Long.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
             instance.leagueConferenceId = ((Long) in.readValue((Long.class.getClassLoader())));
-            instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
+          //  instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
             return instance;
         }
 
@@ -80,7 +61,7 @@ public class League extends BaseModel implements Parcelable
      * @return
      *     The id
      */
-    @JsonProperty("id")
+
     public Long getId() {
         return id;
     }
@@ -90,7 +71,7 @@ public class League extends BaseModel implements Parcelable
      * @param id
      *     The id
      */
-    @JsonProperty("id")
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -100,7 +81,7 @@ public class League extends BaseModel implements Parcelable
      * @return
      *     The name
      */
-    @JsonProperty("name")
+
     public String getName() {
         return name;
     }
@@ -110,7 +91,7 @@ public class League extends BaseModel implements Parcelable
      * @param name
      *     The name
      */
-    @JsonProperty("name")
+
     public void setName(String name) {
         this.name = name;
     }
@@ -120,7 +101,7 @@ public class League extends BaseModel implements Parcelable
      * @return
      *     The leagueConferenceId
      */
-    @JsonProperty("leagueConferenceId")
+
     public Long getLeagueConferenceId() {
         return leagueConferenceId;
     }
@@ -130,43 +111,17 @@ public class League extends BaseModel implements Parcelable
      * @param leagueConferenceId
      *     The leagueConferenceId
      */
-    @JsonProperty("leagueConferenceId")
+
     public void setLeagueConferenceId(Long leagueConferenceId) {
         this.leagueConferenceId = leagueConferenceId;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(id).append(name).append(leagueConferenceId).append(additionalProperties).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof League) == false) {
-            return false;
-        }
-        League rhs = ((League) other);
-        return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name).append(leagueConferenceId, rhs.leagueConferenceId).append(additionalProperties, rhs.additionalProperties).isEquals();
-    }
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
         dest.writeValue(name);
         dest.writeLong(leagueConferenceId);
-        dest.writeValue(additionalProperties);
+      //  dest.writeValue(additionalProperties);
     }
 
     public int describeContents() {

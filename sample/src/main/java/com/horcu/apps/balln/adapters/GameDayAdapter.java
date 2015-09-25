@@ -49,9 +49,6 @@ import com.horcu.apps.balln.utilities.DBUtils;
 import com.horcu.apps.balln.utilities.JsonHelper;
 import com.horcu.apps.balln.utilities.JsonLoader;
 import com.horcu.apps.balln.utilities.TeamHelmets;
-import com.raizlabs.android.dbflow.sql.builder.Condition;
-import com.raizlabs.android.dbflow.sql.language.Select;
-import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -65,6 +62,8 @@ import java.util.List;
 import java.util.UUID;
 
 import ca.barrenechea.widget.recyclerview.decoration.DoubleHeaderAdapter;
+import ollie.Model;
+import ollie.query.Select;
 
 
 public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHolder> implements
@@ -99,15 +98,6 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
 
     private int getCurrentWeek() {
         return 1;
-        //logic here to use the current date to determine the week
-//        Date today = new Date();
-//        switch (today.getDate())
-//        {
-//            case today.getDate() > Consts.WEEK1_DATE.getDate()
-//            {
-//
-//            }
-//        }
     }
 
     @NonNull
@@ -254,8 +244,8 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
         try {
            final  Game game = games.get(position);
 
-            AwayTeam ateam = new Select().from(AwayTeam.class).where(Condition.column("id").eq(game.getAwayTeamId())).querySingle();
-            HomeTeam hteam = new Select().from(HomeTeam.class).where(Condition.column("id").eq(game.getHomeTeamId())).querySingle();
+            AwayTeam ateam =  Select.from(AwayTeam.class).where(String.valueOf("id" == game.getAwayTeamId().toString())).fetchSingle();
+            HomeTeam hteam =  Select.from(HomeTeam.class).where(String.valueOf("id" == game.getHomeTeamId().toString())).fetchSingle();
 
             if(ateam == null || hteam == null)
                 return;
@@ -292,10 +282,10 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
                return;
 
             final Game game = games.get(position);
-            AwayTeam ateam = new Select().from(AwayTeam.class).where(Condition.column("id").eq(game.getAwayTeamId())).querySingle();
+            AwayTeam ateam =  Select.from(AwayTeam.class).where(String.valueOf("id" == game.getAwayTeamId().toString())).fetchSingle();
              holder.binding.setAwayTeam(ateam);
 
-            HomeTeam hteam = new Select().from(HomeTeam.class).where(Condition.column("id").eq(game.getHomeTeamId())).querySingle();
+            HomeTeam hteam =  Select.from(HomeTeam.class).where(String.valueOf("id"== game.getHomeTeamId().toString())).fetchSingle();
             holder.binding.setHomeTeam(hteam);
 
             holder.bind(game);
@@ -308,8 +298,8 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ItemTestBinding binding;
         public LinearLayout item;
-        public com.joanzapata.iconify.widget.IconTextView refresh;
-        public com.joanzapata.iconify.widget.IconTextView editMatchup;
+//        public com.joanzapata.iconify.widget.IconTextView refresh;
+//        public com.joanzapata.iconify.widget.IconTextView editMatchup;
 
         public ViewHolder(final View view, final ItemTestBinding binding) {
             super(view);
@@ -320,8 +310,8 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
            // refresh = (com.joanzapata.iconify.widget.IconTextView) item.findViewById(R.id.refresh);
            // refresh.setOnClickListener(new refreshClick());
 
-            editMatchup = (com.joanzapata.iconify.widget.IconTextView) item.findViewById(R.id.edit_matchup);
-            editMatchup.setOnClickListener(new editClick() );
+//            editMatchup = (com.joanzapata.iconify.widget.IconTextView) item.findViewById(R.id.edit_matchup);
+//            editMatchup.setOnClickListener(new editClick() );
         }
 
         @UiThread
@@ -436,7 +426,7 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
         protected AsyncTaskResult<JSONObject> doInBackground(Void... params) {
 
             try {
-                games = new Select().from(Game.class).queryList();
+                games = Select.from(Game.class).fetch();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -471,10 +461,10 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
 
             try {
 
-                List<Team> teams = new Select().from(Team.class).queryList();
-                List<AwayTeam> awayTeams  = new Select().from(AwayTeam.class).queryList();
-                List<HomeTeam> homeTeams  = new Select().from(HomeTeam.class).queryList();
-                List<BaseModel> teamsCombo = new ArrayList<>();
+                List<Team> teams =  Select.from(Team.class).fetch();
+                List<AwayTeam> awayTeams  =  Select.from(AwayTeam.class).fetch();
+                List<HomeTeam> homeTeams  =  Select.from(HomeTeam.class).fetch();
+                List<Model> teamsCombo = new ArrayList<>();
                 teamsCombo.addAll(awayTeams);
                 teamsCombo.addAll(homeTeams);
 
@@ -485,7 +475,7 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
 
                    for (int at= 0; at < teamsCombo.size(); at ++)
                    {
-                       BaseModel xteam = teamsCombo.get(at);
+                       Model xteam = teamsCombo.get(at);
 
                        if(xteam instanceof AwayTeam ) {
                            String name = ((AwayTeam) xteam).getName();
@@ -579,7 +569,7 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
 
                             TeamColors teamColors = mapper.readValue(jsonTeam.get("team_colors").toString(), TeamColors.class);
 
-                            if(!teamColors.exists())
+                            if(teamColors != null)
                             teamColors.save();
 
                             JSONObject jsonVenue = jsonTeam.getJSONObject("venue");
@@ -606,8 +596,6 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
                     lconf.setConferenceId(conference.getId());
                     lconf.save();
                 }
-
-               // league.setLeagueConferenceId();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -683,7 +671,6 @@ public class GameDayAdapter extends  RecyclerView.Adapter<GameDayAdapter.ViewHol
                     JSONObject jVenue = matchup.getJSONObject("venue");
                     Venue venue = mapper.readValue(jVenue.toString(), Venue.class);
                     game.setVenueId(venue.getVenueId());
-                   // venue.save(); // this is saved when the teams are saved
 
                     JSONObject jBroadcast = matchup.getJSONObject("broadcast");
                     Broadcast broadcast = mapper.readValue(jBroadcast.toString(), Broadcast.class);

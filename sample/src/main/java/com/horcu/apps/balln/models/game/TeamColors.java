@@ -14,50 +14,31 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.horcu.apps.balln.db.horcuDatabase;
-import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.ModelContainer;
-import com.raizlabs.android.dbflow.annotation.PrimaryKey;
-import com.raizlabs.android.dbflow.annotation.Table;
-import com.raizlabs.android.dbflow.structure.BaseModel;
+
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Generated("org.jsonschema2pojo")
-@JsonPropertyOrder({
-    "id",
-    "primary_color",
-    "secondary_color",
-    "tertiary_color"
-})
+import ollie.Model;
+import ollie.annotation.Column;
+import ollie.annotation.PrimaryKey;
+import ollie.annotation.Table;
 
-@ModelContainer
-@Table(databaseName = horcuDatabase.NAME)
-public class TeamColors extends BaseModel implements Parcelable
+
+public class TeamColors extends Model implements Parcelable
 {
 public TeamColors(){}
 
-    @Column
-    @PrimaryKey(autoincrement = true)
-    @JsonProperty("id")
+
     public Long id;
 
-    @Column
-    @JsonProperty("primary_color")
-    private String primaryColor;
+    public String primaryColor;
 
-    @Column
-    @JsonProperty("secondary_color")
-    private String secondaryColor;
+    public String secondaryColor;
 
-    @Column
-    @JsonProperty("tertiary_color")
-    private String tertiaryColor;
+    public String tertiaryColor;
 
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     public final static Creator<TeamColors> CREATOR = new Creator<TeamColors>() {
 
 
@@ -67,7 +48,8 @@ public TeamColors(){}
             instance.primaryColor = ((String) in.readValue((String.class.getClassLoader())));
             instance.secondaryColor = ((String) in.readValue((String.class.getClassLoader())));
             instance.tertiaryColor = ((String) in.readValue((String.class.getClassLoader())));
-            instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
+
+            //instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
             return instance;
         }
 
@@ -78,14 +60,11 @@ public TeamColors(){}
     }
     ;
 
-
-    @JsonProperty("id")
     public Long getId() {
         return id;
     }
 
 
-    @JsonProperty("id")
     public void setId(Long id) {
         this.id = id;
     }
@@ -95,7 +74,7 @@ public TeamColors(){}
      * @return
      *     The primaryColor
      */
-    @JsonProperty("primary_color")
+
     public String getPrimaryColor() {
         return primaryColor;
     }
@@ -105,7 +84,7 @@ public TeamColors(){}
      * @param primaryColor
      *     The primary_color
      */
-    @JsonProperty("primary_color")
+
     public void setPrimaryColor(String primaryColor) {
         this.primaryColor = primaryColor;
     }
@@ -115,7 +94,7 @@ public TeamColors(){}
      * @return
      *     The secondaryColor
      */
-    @JsonProperty("secondary_color")
+
     public String getSecondaryColor() {
         return secondaryColor;
     }
@@ -125,7 +104,7 @@ public TeamColors(){}
      * @param secondaryColor
      *     The secondary_color
      */
-    @JsonProperty("secondary_color")
+
     public void setSecondaryColor(String secondaryColor) {
         this.secondaryColor = secondaryColor;
     }
@@ -135,7 +114,7 @@ public TeamColors(){}
      * @return
      *     The tertiaryColor
      */
-    @JsonProperty("tertiary_color")
+
     public String getTertiaryColor() {
         return tertiaryColor;
     }
@@ -145,43 +124,17 @@ public TeamColors(){}
      * @param tertiaryColor
      *     The tertiary_color
      */
-    @JsonProperty("tertiary_color")
+
     public void setTertiaryColor(String tertiaryColor) {
         this.tertiaryColor = tertiaryColor;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(primaryColor).append(secondaryColor).append(tertiaryColor).append(additionalProperties).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof TeamColors) == false) {
-            return false;
-        }
-        TeamColors rhs = ((TeamColors) other);
-        return new EqualsBuilder().append(primaryColor, rhs.primaryColor).append(secondaryColor, rhs.secondaryColor).append(tertiaryColor, rhs.tertiaryColor).append(additionalProperties, rhs.additionalProperties).isEquals();
-    }
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(primaryColor);
         dest.writeValue(secondaryColor);
         dest.writeValue(tertiaryColor);
-        dest.writeValue(additionalProperties);
+       // dest.writeValue(additionalProperties);
     }
 
     public int describeContents() {

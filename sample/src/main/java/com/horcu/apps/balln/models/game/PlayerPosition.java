@@ -5,49 +5,40 @@ import android.os.Parcelable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.horcu.apps.balln.db.horcuDatabase;
-import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.ModelContainer;
-import com.raizlabs.android.dbflow.annotation.PrimaryKey;
-import com.raizlabs.android.dbflow.annotation.Table;
-import com.raizlabs.android.dbflow.structure.BaseModel;
+
+import ollie.Model;
+import ollie.annotation.Column;
+import ollie.annotation.PrimaryKey;
+import ollie.annotation.Table;
 
 /**
  * Created by hacz on 8/5/2015.
  */
-@ModelContainer
-@Table(databaseName = horcuDatabase.NAME)
-public class PlayerPosition extends BaseModel implements Parcelable {
+
+
+public class PlayerPosition extends Model implements Parcelable {
 
     public PlayerPosition(){}
 
-    @Column
 
-    @PrimaryKey(autoincrement = true)
-    @JsonProperty("id")
-    private Long id;
+    public Long id;
 
-    @Column
-    @JsonProperty("playerPositionId")
-    private String playerPositionId;
+    public String playerPositionId;
 
-    @Column
-    @JsonProperty("playerId")
-    private String playerId;
+    public String playerId;
 
-    @Column
-    @JsonProperty("positionId")
-    private Long positionId;
+    public Long positionId;
 
-    @Column(name = "depth")
-    @JsonProperty("depth")
-    private Long depth;
+
+
+    public Long depth;
 
     /**
      *
      * @return
      *     The id
      */
-    @JsonProperty("id")
+
     public Long getId() {
         return id;
     }
@@ -57,7 +48,6 @@ public class PlayerPosition extends BaseModel implements Parcelable {
      * @param id
      *     The id
      */
-    @JsonProperty("id")
     public void setId(Long id) {
         this.id = id;
     }
@@ -67,7 +57,6 @@ public class PlayerPosition extends BaseModel implements Parcelable {
      * @return
      *     The id
      */
-    @JsonProperty("playerPositionId")
     public String getPlayerPositionId() {
         return playerPositionId;
     }
@@ -77,7 +66,7 @@ public class PlayerPosition extends BaseModel implements Parcelable {
      * @param playerPositionId
      *     The id
      */
-    @JsonProperty("playerPositionId")
+
     public void setPlayerPositionId(String playerPositionId) {
         this.playerPositionId = playerPositionId;
     }
@@ -87,7 +76,7 @@ public class PlayerPosition extends BaseModel implements Parcelable {
      * @return
      *     The playerId
      */
-    @JsonProperty("playerId")
+
     public String getPlayerId() {
         return playerId;
     }
@@ -97,7 +86,7 @@ public class PlayerPosition extends BaseModel implements Parcelable {
      * @param playerId
      *     The id
      */
-    @JsonProperty("playerId")
+
     public void setPlayerId(String playerId) {
         this.playerId = playerId;
     }
@@ -107,7 +96,7 @@ public class PlayerPosition extends BaseModel implements Parcelable {
      * @return
      *     The id
      */
-    @JsonProperty("positionId")
+
     public Long getPositionId() {
         return positionId;
     }
@@ -117,7 +106,7 @@ public class PlayerPosition extends BaseModel implements Parcelable {
      * @param positionId
      *     The id
      */
-    @JsonProperty("positionId")
+
     public void setPositionId(Long positionId) {
         this.positionId = positionId;
     }
@@ -127,7 +116,7 @@ public class PlayerPosition extends BaseModel implements Parcelable {
      * @return
      *     The id
      */
-    @JsonProperty("depth")
+
     public Long getDepth() {
         return depth;
     }
@@ -137,12 +126,13 @@ public class PlayerPosition extends BaseModel implements Parcelable {
      * @param depth
      *     The id
      */
-    @JsonProperty("depth")
+
     public void setDepth(Long depth) {
         this.depth = depth;
     }
 
        public static final Creator<PlayerPosition> CREATOR = new Creator<PlayerPosition>() {
+
         @Override
         public PlayerPosition createFromParcel(Parcel in) {
             PlayerPosition instance = new PlayerPosition();

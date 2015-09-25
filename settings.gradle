@@ -1,8 +1,6 @@
-include ':sample',
-        ':lib',
+include ':sample'
+       // ':lib',
         //':library',
         // ':TextDrawableSample',
-        ':android-iconify-weathericons',
-        ':android-iconify-simplelineicons',
-        ':android-iconify', ':player_spinner', ':android-iconify-material'
+        //':player_spinner'
 //:PlayerWidgetlibrary'//, ':stickyHeaderlib'

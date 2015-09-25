@@ -16,4 +16,4 @@
 #   public *;
 #}
 #-keep class com.github.mikephil.charting.** { *; }
--keep class com.joanzapata.** { *; }
+#-keep class com.joanzapata.** { *; }

@@ -3,7 +3,6 @@ package com.horcu.apps.balln.presenters;
 import android.content.Context;
 
 import com.horcu.apps.balln.models.game.Game;
-import com.horcu.apps.balln.services.WeeklySchedule;
 import com.horcu.apps.balln.views.ListingsView;
 
 import java.util.ArrayList;

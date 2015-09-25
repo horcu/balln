@@ -13,15 +13,15 @@ import com.horcu.apps.balln.models.game.Player;
 import com.horcu.apps.balln.models.game.PlayerPosition;
 import com.horcu.apps.balln.models.game.Position;
 import com.horcu.apps.balln.models.game.SpecialTeams;
-import com.raizlabs.android.dbflow.sql.builder.Condition;
-import com.raizlabs.android.dbflow.sql.language.Select;
-import com.raizlabs.android.dbflow.structure.BaseModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+
+import ollie.Model;
+import ollie.query.Select;
 
 /**
  * Created by hacz on 8/15/2015.
@@ -31,13 +31,13 @@ import java.util.UUID;
     public JsonHelper() {
     }
 
-    public BaseModel set(BALL_SIDE ballSide, Game game, JSONObject matchup, ObjectMapper mapper, BaseModel model) throws JSONException, IOException {
-        BaseModel baseModel = setBallSide(ballSide, game, matchup, mapper, model);
-        return baseModel;
+    public Model set(BALL_SIDE ballSide, Game game, JSONObject matchup, ObjectMapper mapper, Model model) throws JSONException, IOException {
+        Model Model = setBallSide(ballSide, game, matchup, mapper, model);
+        return Model;
     }
 
     @NonNull
-    private BaseModel setBallSide(BALL_SIDE ballSide, Game game, JSONObject matchup, ObjectMapper mapper, BaseModel team) throws JSONException, IOException {
+    private Model setBallSide(BALL_SIDE ballSide, Game game, JSONObject matchup, ObjectMapper mapper, Model team) throws JSONException, IOException {
 
         try {
             switch (ballSide) {
@@ -137,7 +137,7 @@ import java.util.UUID;
                 newPosition.setName(pos.getString(Consts.NAME));
                 newPosition.setDesc(pos.getString(Consts.DESC));
 
-                Position record = new Select().from(Position.class).where(Condition.column("name").eq(newPosition.getName())).querySingle();
+                Position record =  Select.from(Position.class).where(String.valueOf("name" == newPosition.getName())).fetchSingle();
                 Boolean positionDoesNotExist = record == null;
 
                 if(positionDoesNotExist)

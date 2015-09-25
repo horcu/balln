@@ -15,66 +15,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.horcu.apps.balln.db.horcuDatabase;
 import com.horcu.apps.balln.models.game.Venue;
-import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.ModelContainer;
-import com.raizlabs.android.dbflow.annotation.PrimaryKey;
-import com.raizlabs.android.dbflow.annotation.Table;
-import com.raizlabs.android.dbflow.structure.BaseModel;
+
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Generated("org.jsonschema2pojo")
-@JsonPropertyOrder({
-    "id",
-    "name",
-    "market",
-    "team_colors",
-    "venueId"
-})
-@ModelContainer
-@Table(databaseName = horcuDatabase.NAME)
-public class Team extends BaseModel implements Parcelable
+import ollie.Model;
+import ollie.annotation.Column;
+import ollie.annotation.PrimaryKey;
+import ollie.annotation.Table;
+
+public class Team extends Model implements Parcelable
 {
 
     public Team(){}
 
-    @PrimaryKey(autoincrement = false)
-    @Column
-    @JsonProperty("id")
-    private String id;
+    public Long id;
 
-    @Column
-    @JsonProperty("name")
-    private String name;
+    public String name;
 
-    @Column
-    @JsonProperty("market")
-    private String market;
+    public String market;
 
-    @Column
-    @JsonProperty("team_colorsId")
-    private Long teamColorsId;
+    public Long teamColorsId;
 
-    @Column
-    @JsonProperty("venueId")
-    private String venueId;
+    public String venueId;
 
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    public String defenseId;
+
+    public String offenseId;
+
+    public String specialTeamsId;
+
     public final static Creator<Team> CREATOR = new Creator<Team>() {
 
 
         public Team createFromParcel(Parcel in) {
             Team instance = new Team();
-            instance.id = ((String) in.readValue((String.class.getClassLoader())));
+            instance.id = ((Long) in.readValue((Long.class.getClassLoader())));
             instance.name = ((String) in.readValue((String.class.getClassLoader())));
             instance.market = ((String) in.readValue((String.class.getClassLoader())));
             instance.teamColorsId = ((Long) in.readValue((Long.class.getClassLoader())));
             instance.venueId = ((String) in.readValue((String.class.getClassLoader())));
-            instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
+           // instance.additionalProperties = ((Map<String, Object> ) in.readValue((Map.class.getClassLoader())));
             return instance;
         }
 
@@ -90,8 +73,8 @@ public class Team extends BaseModel implements Parcelable
      * @return
      *     The id
      */
-    @JsonProperty("id")
-    public String getId() {
+
+    public Long getId() {
         return id;
     }
 
@@ -100,8 +83,8 @@ public class Team extends BaseModel implements Parcelable
      * @param id
      *     The id
      */
-    @JsonProperty("id")
-    public void setId(String id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -110,7 +93,7 @@ public class Team extends BaseModel implements Parcelable
      * @return
      *     The name
      */
-    @JsonProperty("name")
+
     public String getName() {
         return name;
     }
@@ -120,7 +103,7 @@ public class Team extends BaseModel implements Parcelable
      * @param name
      *     The name
      */
-    @JsonProperty("name")
+
     public void setName(String name) {
         this.name = name;
     }
@@ -130,7 +113,7 @@ public class Team extends BaseModel implements Parcelable
      * @return
      *     The market
      */
-    @JsonProperty("market")
+
     public String getMarket() {
         return market;
     }
@@ -140,7 +123,7 @@ public class Team extends BaseModel implements Parcelable
      * @param market
      *     The market
      */
-    @JsonProperty("market")
+
     public void setMarket(String market) {
         this.market = market;
     }
@@ -150,7 +133,7 @@ public class Team extends BaseModel implements Parcelable
      * @return
      *     The teamColorsId
      */
-    @JsonProperty("team_colorsId")
+
     public Long getTeamColorsId() {
         return teamColorsId;
     }
@@ -160,7 +143,7 @@ public class Team extends BaseModel implements Parcelable
      * @param teamColorsId
      *     The team_colors
      */
-    @JsonProperty("team_colorsId")
+
     public void setTeamColorsId(Long teamColorsId) {
         this.teamColorsId = teamColorsId;
     }
@@ -170,7 +153,7 @@ public class Team extends BaseModel implements Parcelable
      * @return
      *     The venueId
      */
-    @JsonProperty("venueId")
+
     public String getVenueId() {
         return venueId;
     }
@@ -180,37 +163,71 @@ public class Team extends BaseModel implements Parcelable
      * @param venueId
      *     The venueId
      */
-    @JsonProperty("venueId")
+
     public void setVenueId(String venueId) {
         this.venueId = venueId;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    /**
+     *
+     * @return
+     *     The offenseId
+     */
+
+    public String getOffenseId() {
+        return offenseId;
     }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    /**
+     *
+     * @param offenseId
+     *     The offenseId
+     */
+
+    public void setOffenseId(String offenseId) {
+        this.offenseId = offenseId;
     }
 
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(id).append(name).append(market).append(teamColorsId).append(venueId).append(additionalProperties).toHashCode();
+    /**
+     *
+     * @return
+     *     The defenseId
+     */
+
+    public String getDefenseId() {
+        return defenseId;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Team) == false) {
-            return false;
-        }
-        Team rhs = ((Team) other);
-        return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name).append(market, rhs.market).append(teamColorsId, rhs.teamColorsId).append(venueId, rhs.venueId).append(additionalProperties, rhs.additionalProperties).isEquals();
+    /**
+     *
+
+     *     The specialTeamsId
+     */
+
+    public void setDefenseId(String defenseId) {
+        this.defenseId = defenseId;
     }
+
+    /**
+     *
+     * @return
+     *     The specialTeamsId
+     */
+
+    public String getSpecialTeamsId() {
+        return specialTeamsId;
+    }
+
+    /**
+     *
+     * @param specialTeamsId
+     *     The specialTeamsId
+     */
+
+    public void setSpecialTeamsId(String specialTeamsId) {
+        this.specialTeamsId = specialTeamsId;
+    }
+
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
@@ -218,7 +235,7 @@ public class Team extends BaseModel implements Parcelable
         dest.writeValue(market);
         dest.writeValue(teamColorsId);
         dest.writeValue(venueId);
-        dest.writeValue(additionalProperties);
+       // dest.writeValue(additionalProperties);
     }
 
     public int describeContents() {

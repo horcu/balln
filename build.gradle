@@ -21,21 +21,14 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
-//        maven {
-//            url "https://dl.bintray.com/elastique/poetry"
-//
-//
-//        }
-        maven{
-
-            url "http://dl.bintray.com/glomadrian/maven"
-        }
-        maven {
-            url 'http://dl.bintray.com/amulyakhare/maven'
-        }
-        maven {
-            url "https://jitpack.io"
-        }
+        //        maven {
+      //  maven { url '//            url "https://dl.bintray.com/elastique/poetry"' }
+        //
+        //
+        //        }
+        maven { url 'http://dl.bintray.com/glomadrian/maven' }
+        maven { url 'http://dl.bintray.com/amulyakhare/maven' }
+        maven { url 'https://jitpack.io' }
     }
 
 }
